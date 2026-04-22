@@ -12,6 +12,9 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="shortcut icon" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 
 <!-- ═══════════════════════════════════════════════════
   TARGET KEYWORD: "how to speed up WordPress website"
@@ -95,128 +98,161 @@
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap');
+/* Fonts: match home page */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 
+/* ══════════════════════════════════════════════════════
+   HOSTINGJOY UNIFIED DESIGN SYSTEM 2026 (HOME MATCH)
+══════════════════════════════════════════════════════ */
 :root {
-  --bg: #fafaf8;
-  --surface: #ffffff;
-  --surface2: #f5f4f0;
-  --border: #e5e2d8;
-  --ink: #1a1814;
-  --ink2: #3d3a34;
-  --ink3: #7a756b;
-  --accent: #e05c1a;
-  --accent-bg: #fff4ee;
-  --accent-border: #fcd8be;
-  --green: #1a7a4a;
-  --green-bg: #edfaf3;
-  --green-border: #b0e8c8;
-  --blue: #1a4fa8;
-  --blue-bg: #edf3ff;
-  --blue-border: #b0c8f5;
-  --yellow: #a06000;
-  --yellow-bg: #fffbeb;
-  --yellow-border: #fde68a;
-  --red: #c01a1a;
-  --red-bg: #fff0f0;
-  --red-border: #ffc5c5;
-  --radius: 10px;
-  --shadow-sm: 0 1px 4px rgba(0,0,0,0.07);
-  --shadow: 0 4px 16px rgba(0,0,0,0.1);
+  --bg:#080c18; --bg2:#0d1526; --surface:#111d33;
+  --surface2:#162240; --surface3:#1c2b4e;
+  --border:#1e3060; --border2:#243a72;
+  --text:#eef2ff; --text-2:#a8b8d8; --text-3:#5a7098; --text-inv:#080c18;
+  --amber:#f59e0b; --amber-light:#fcd34d;
+  --amber-dim:rgba(245,158,11,0.15); --amber-glow:rgba(245,158,11,0.08);
+  --blue:#3b82f6; --blue-light:#60a5fa; --blue-dim:rgba(59,130,246,0.12);
+  --teal:#06d6a0; --teal-dim:rgba(6,214,160,0.12);
+  --orange:#e05c1a; --orange-dim:rgba(224,92,26,0.12);
+  --green:#10b981; --red:#f87171; --gold:#fbbf24;
+  --radius-sm:8px; --radius:12px; --radius-lg:20px;
+  --shadow:0 4px 24px rgba(0,0,0,0.5);
+  --shadow-lg:0 16px 64px rgba(0,0,0,0.6);
+  --glow-amber:0 0 40px rgba(245,158,11,0.2);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; font-size: 16px; }
 body {
   background: var(--bg);
-  color: var(--ink);
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 17px;
-  line-height: 1.75;
+  color: var(--text);
+  font-family: 'Sora', sans-serif;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:.4
 }
 
-/* ── STICKY PROGRESS BAR ── */
+/* ─── TOAST (home) ─── */
+#toast {
+  position:fixed; bottom:32px; left:50%; transform:translateX(-50%) translateY(80px);
+  background:var(--surface); border:1px solid var(--border2); border-radius:var(--radius);
+  padding:14px 24px; font-size:.88rem; font-weight:600; color:var(--text-2);
+  box-shadow:var(--shadow-lg); z-index:9999;
+  display:flex; align-items:center; gap:10px;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1), opacity .3s;
+  opacity:0; pointer-events:none; white-space:nowrap;
+}
+#toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+#toast .toast-icon { font-size:1.1rem; }
+#toast .toast-bar {
+  position:absolute; bottom:0; left:0; height:3px;
+  background:linear-gradient(90deg,var(--amber),var(--orange));
+  border-radius:0 0 var(--radius) var(--radius);
+  animation:toastBar 3s linear forwards;
+}
+@keyframes toastBar{from{width:100%}to{width:0%}}
+
+/* ─── NAVBAR (home) ─── */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .3s ease}
+.navbar.scrolled{background:rgba(8,12,24,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(20px);box-shadow:0 4px 24px rgba(0,0,0,.4)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:70px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo{text-decoration:none;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-logo-icon{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--amber),#f97316);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:900;color:#000;box-shadow:var(--glow-amber)}
+.nav-logo-text{font-size:1.15rem;font-weight:800;color:var(--text);letter-spacing:-.5px}
+.nav-logo-text em{font-style:normal;color:var(--amber)}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{display:block;padding:8px 14px;font-size:.85rem;font-weight:600;color:var(--text-2);text-decoration:none;border-radius:var(--radius-sm);transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--text);background:var(--surface)}
+.nav-links .nav-active a{color:var(--amber)}
+.nav-dropdown{position:relative}
+.nav-dropdown>a::after{content:' ▾';font-size:.65rem;opacity:.6}
+.dropdown-menu{position:absolute;top:calc(100% + 8px);left:0;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:8px;min-width:220px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .2s ease}
+.nav-dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown-menu a{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--radius-sm);font-size:.82rem;color:var(--text-2);text-decoration:none;transition:color .15s,background .15s}
+.dropdown-menu a:hover{color:var(--text);background:var(--surface2)}
+.dropdown-menu a span{font-size:1.1rem}
+.nav-right{display:flex;align-items:center;gap:12px}
+.btn-ghost{padding:8px 16px;border-radius:var(--radius-sm);border:1px solid var(--border2);color:var(--text-2);font-size:.83rem;font-weight:600;background:transparent;cursor:pointer;text-decoration:none;transition:all .2s}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+.btn-primary{padding:9px 20px;border-radius:var(--radius-sm);background:var(--amber);color:#000;font-size:.83rem;font-weight:800;border:none;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 4px 12px rgba(245,158,11,.3)}
+.btn-primary:hover{background:var(--amber-light);box-shadow:0 4px 20px rgba(245,158,11,.45);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text-2);border-radius:2px;transition:all .25s}
+@media(max-width:900px){.nav-links,.nav-right .btn-ghost{display:none}.hamburger{display:flex}}
+.mobile-menu{position:fixed;top:70px;left:0;right:0;bottom:0;z-index:999;background:rgba(8,12,24,.98);backdrop-filter:blur(20px);padding:24px;display:none;flex-direction:column;gap:8px;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{padding:14px 16px;border-radius:var(--radius);color:var(--text-2);font-size:1rem;font-weight:600;text-decoration:none;border:1px solid transparent;transition:all .2s}
+.mobile-menu a:hover{border-color:var(--border2);color:var(--text);background:var(--surface)}
+
+/* ─── PAGE LAYOUT ─── */
+.page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; position:relative; z-index:1; }
+main { padding-top: 90px; }
+.content-grid { display: grid; grid-template-columns: 1fr 320px; gap: 48px; align-items: start; margin-top: 48px; }
+@media(max-width:950px){ .content-grid { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+/* ── READING PROGRESS BAR (under navbar) ── */
 .progress-bar {
-  position: fixed; top: 0; left: 0;
+  position: fixed; top: 70px; left: 0;
   width: 0%; height: 3px;
-  background: linear-gradient(90deg, var(--accent), #ff8c42);
-  z-index: 9999;
+  background: linear-gradient(90deg, var(--amber), var(--orange));
+  z-index: 1001;
   transition: width 0.1s;
 }
 
-/* ── HEADER ── */
-.site-header {
-  background: rgba(250,250,248,0.95);
-  border-bottom: 1px solid var(--border);
-  padding: 14px 0;
-  position: sticky; top: 3px; z-index: 100;
-  backdrop-filter: blur(10px);
-}
-.header-inner { max-width: 1060px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
-.logo { font-size: 1.25rem; font-weight: 800; color: var(--ink); text-decoration: none; }
-.logo em { font-style: normal; color: var(--accent); }
-.score-badge {
-  display: flex; align-items: center; gap: 8px;
-  background: var(--green-bg); border: 1px solid var(--green-border);
-  border-radius: 999px; padding: 5px 14px;
-  font-size: 0.75rem; font-weight: 700; color: var(--green);
-}
-.score-badge::before { content: '⚡'; }
-
-/* ── LAYOUT ── */
-.page-wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
-.content-grid { display: grid; grid-template-columns: 1fr 280px; gap: 48px; align-items: start; margin-top: 48px; }
-@media(max-width:900px){ .content-grid { grid-template-columns: 1fr; } .sidebar { display: none; } }
-
-/* ── HERO ── */
-.hero { padding: 64px 0 0; }
+/* ─── HERO ─── */
+.hero { padding: 34px 0 0; }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
-  font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px;
-  color: var(--accent); margin-bottom: 16px;
+  font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px;
+  color: var(--amber); margin-bottom: 16px;
 }
-.hero-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--accent); }
+.hero-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--amber); }
 
 h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-family: 'Lora', serif;
+  font-size: clamp(2.05rem, 4.5vw, 3.3rem);
   line-height: 1.15;
-  color: var(--ink);
-  max-width: 780px;
-  margin-bottom: 20px;
-  letter-spacing: -0.5px;
+  color: var(--text);
+  max-width: 860px;
+  margin-bottom: 18px;
+  letter-spacing: -0.8px;
 }
-h1 span { color: var(--accent); font-style: italic; }
+h1 span { color: var(--amber); font-style: normal; }
 
 .hero-deck {
-  font-size: 1.1rem; color: var(--ink2);
-  max-width: 680px; line-height: 1.7; margin-bottom: 28px;
+  font-size: 1.05rem; color: var(--text-2);
+  max-width: 760px; line-height: 1.8; margin-bottom: 26px;
 }
 
 .meta-strip {
-  display: flex; flex-wrap: wrap; gap: 16px;
-  font-size: 0.8rem; color: var(--ink3);
-  margin-bottom: 36px; padding-bottom: 32px;
-  border-bottom: 2px solid var(--border);
+  display: flex; flex-wrap: wrap; gap: 14px;
+  font-size: 0.78rem; color: var(--text-3);
+  margin-bottom: 34px; padding-bottom: 26px;
+  border-bottom: 1px solid var(--border2);
 }
-.meta-strip span { display: flex; align-items: center; gap: 5px; }
+.meta-strip span { display: flex; align-items: center; gap: 6px; }
 
 /* ── RESULT SHOWCASE ── */
 .result-box {
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border2);
   border-radius: 14px;
   overflow: hidden;
   margin: 32px 0;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-lg);
 }
 .result-box-header {
-  background: var(--ink);
-  color: #fff;
+  background: rgba(245,158,11,.08);
+  color: var(--amber);
   padding: 14px 24px;
   font-size: 0.78rem; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
   display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid var(--border2);
 }
 .result-box-body { display: grid; grid-template-columns: 1fr 1fr; }
 @media(max-width:600px){ .result-box-body { grid-template-columns: 1fr; } }
@@ -225,30 +261,30 @@ h1 span { color: var(--accent); font-style: italic; }
   display: flex; flex-direction: column; align-items: center; text-align: center;
 }
 .result-col:first-child { border-right: 1px solid var(--border); }
-.result-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--ink3); margin-bottom: 8px; }
+.result-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-3); margin-bottom: 8px; }
 .result-circle {
   width: 100px; height: 100px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 2.2rem; font-weight: 800;
   margin: 8px 0 12px;
 }
-.score-bad { background: var(--red-bg); border: 3px solid #f87171; color: var(--red); }
-.score-good { background: var(--green-bg); border: 3px solid #4ade80; color: var(--green); }
-.result-detail { font-size: 0.82rem; color: var(--ink3); line-height: 1.5; }
+.score-bad { background: rgba(248,113,113,.12); border: 3px solid rgba(248,113,113,.65); color: var(--red); }
+.score-good { background: rgba(6,214,160,.12); border: 3px solid rgba(6,214,160,.65); color: var(--teal); }
+.result-detail { font-size: 0.82rem; color: var(--text-3); line-height: 1.55; }
 .arrow-col {
   display: flex; align-items: center; justify-content: center;
   background: var(--surface2);
   padding: 0 12px;
-  font-size: 1.8rem; color: var(--accent);
+  font-size: 1.8rem; color: var(--amber);
   font-weight: 800;
 }
 .result-box-body.three-col { grid-template-columns: 1fr 48px 1fr; }
 
 /* ── MAIN H2 ── */
 h2 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(1.4rem, 2.8vw, 1.85rem);
-  color: var(--ink);
+  font-family: 'Lora', serif;
+  font-size: clamp(1.35rem, 2.8vw, 1.9rem);
+  color: var(--text);
   margin: 60px 0 16px;
   padding-top: 12px;
   line-height: 1.25;
@@ -260,27 +296,25 @@ h2 {
 }
 .step-num {
   width: 36px; height: 36px; border-radius: 8px;
-  background: var(--accent); color: #fff;
+  background: var(--amber); color: #000;
   font-size: 0.85rem; font-weight: 800;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; margin-top: 4px;
 }
-.step-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.3rem, 2.4vw, 1.65rem); line-height: 1.25; margin: 0; padding: 0; }
+.step-title { font-family: 'Lora', serif; font-size: clamp(1.25rem, 2.4vw, 1.7rem); line-height: 1.25; margin: 0; padding: 0; }
 .step-impact {
-  display: inline-block; font-family: 'Plus Jakarta Sans', sans-serif;
+  display: inline-block; font-family: 'Sora', sans-serif;
   font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
   padding: 3px 9px; border-radius: 4px; margin-left: 4px; vertical-align: middle;
 }
-.impact-high { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
-.impact-med { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
-.impact-low { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.impact-high { background: rgba(248,113,113,.12); color: var(--red); border: 1px solid rgba(248,113,113,.35); }
+.impact-med { background: rgba(245,158,11,.12); color: var(--amber); border: 1px solid rgba(245,158,11,.35); }
+.impact-low { background: rgba(59,130,246,.12); color: var(--blue-light); border: 1px solid rgba(59,130,246,.35); }
 
-h3 {
-  font-size: 1.05rem; font-weight: 700; color: var(--ink);
-  margin: 28px 0 8px;
-}
+h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 28px 0 8px; }
 
-p { margin-bottom: 16px; color: var(--ink2); line-height: 1.8; }
+p { margin-bottom: 16px; color: var(--text-2); line-height: 1.85; }
+a { color: var(--amber); }
 
 /* ── CALLOUT / HIGHLIGHT BOXES ── */
 .box {
@@ -290,51 +324,51 @@ p { margin-bottom: 16px; color: var(--ink2); line-height: 1.8; }
   font-size: 0.9rem;
   line-height: 1.7;
 }
-.box-orange { background: var(--accent-bg); border: 1px solid var(--accent-border); }
-.box-green { background: var(--green-bg); border: 1px solid var(--green-border); }
-.box-blue { background: var(--blue-bg); border: 1px solid var(--blue-border); }
-.box-yellow { background: var(--yellow-bg); border: 1px solid var(--yellow-border); }
-.box-red { background: var(--red-bg); border: 1px solid var(--red-border); }
+.box-orange { background: rgba(224,92,26,.10); border: 1px solid rgba(224,92,26,.35); }
+.box-green { background: rgba(6,214,160,.10); border: 1px solid rgba(6,214,160,.35); }
+.box-blue { background: rgba(59,130,246,.10); border: 1px solid rgba(59,130,246,.35); }
+.box-yellow { background: rgba(245,158,11,.10); border: 1px solid rgba(245,158,11,.35); }
+.box-red { background: rgba(248,113,113,.10); border: 1px solid rgba(248,113,113,.35); }
 .box strong { display: block; margin-bottom: 5px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.8px; }
-.box-orange strong { color: var(--accent); }
-.box-green strong { color: var(--green); }
-.box-blue strong { color: var(--blue); }
-.box-yellow strong { color: var(--yellow); }
+.box-orange strong { color: var(--orange); }
+.box-green strong { color: var(--teal); }
+.box-blue strong { color: var(--blue-light); }
+.box-yellow strong { color: var(--amber); }
 .box-red strong { color: var(--red); }
 
 /* ── SPEED METER VISUAL ── */
 .speed-meter-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 24px 0; }
 .speed-meter {
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border2);
   border-radius: var(--radius);
   padding: 16px;
   text-align: center;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
 }
-.speed-meter .sm-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--ink3); margin-bottom: 6px; }
+.speed-meter .sm-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-3); margin-bottom: 6px; }
 .speed-meter .sm-val { font-size: 1.6rem; font-weight: 800; line-height: 1; }
-.speed-meter .sm-sub { font-size: 0.72rem; color: var(--ink3); margin-top: 4px; }
+.speed-meter .sm-sub { font-size: 0.72rem; color: var(--text-3); margin-top: 4px; line-height:1.5; }
 .sm-red .sm-val { color: var(--red); }
-.sm-yellow .sm-val { color: var(--yellow); }
-.sm-green .sm-val { color: var(--green); }
+.sm-yellow .sm-val { color: var(--amber); }
+.sm-green .sm-val { color: var(--teal); }
 
 /* ── PLUGIN CARD ── */
 .plugin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 20px 0; }
 .plugin-card {
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border2);
   border-radius: var(--radius);
   padding: 18px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
   transition: transform 0.15s, box-shadow 0.15s;
 }
-.plugin-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.plugin-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: rgba(245,158,11,.45); }
 .plugin-card .pc-icon { font-size: 1.8rem; margin-bottom: 10px; }
-.plugin-card .pc-name { font-weight: 700; font-size: 0.95rem; color: var(--ink); margin-bottom: 4px; }
-.plugin-card .pc-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--accent); margin-bottom: 8px; }
-.plugin-card .pc-desc { font-size: 0.82rem; color: var(--ink3); line-height: 1.5; }
-.plugin-card .pc-free { font-size: 0.7rem; font-weight: 700; color: var(--green); margin-top: 8px; }
+.plugin-card .pc-name { font-weight: 800; font-size: 0.95rem; color: var(--text); margin-bottom: 4px; }
+.plugin-card .pc-tag { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--amber); margin-bottom: 8px; }
+.plugin-card .pc-desc { font-size: 0.82rem; color: var(--text-3); line-height: 1.55; }
+.plugin-card .pc-free { font-size: 0.7rem; font-weight: 800; color: var(--teal); margin-top: 8px; }
 
 /* ── STEP TIMELINE ── */
 .timeline { margin: 24px 0; }
@@ -344,49 +378,49 @@ p { margin-bottom: 16px; color: var(--ink2); line-height: 1.8; }
   content: '';
   position: absolute; left: 15px; top: 36px;
   width: 2px; height: calc(100% - 12px);
-  background: var(--border);
+  background: var(--border2);
 }
 .tl-dot {
   width: 32px; height: 32px; border-radius: 50%;
-  background: var(--accent); color: #fff;
+  background: var(--amber); color: #000;
   display: flex; align-items: center; justify-content: center;
   font-size: 0.78rem; font-weight: 800; flex-shrink: 0; z-index: 1;
 }
 .tl-content { flex: 1; }
-.tl-title { font-weight: 700; font-size: 0.95rem; color: var(--ink); margin-bottom: 4px; }
-.tl-body { font-size: 0.85rem; color: var(--ink3); line-height: 1.6; }
+.tl-title { font-weight: 800; font-size: 0.95rem; color: var(--text); margin-bottom: 4px; }
+.tl-body { font-size: 0.85rem; color: var(--text-3); line-height: 1.65; }
 
 /* ── COMPARISON ── */
 .compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
 @media(max-width:560px){ .compare-row { grid-template-columns: 1fr; } }
 .compare-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 18px;
+  background: var(--surface); border: 1px solid var(--border2);
+  border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow);
 }
-.compare-card.bad { border-color: #ffc5c5; background: var(--red-bg); }
-.compare-card.good { border-color: var(--green-border); background: var(--green-bg); }
+.compare-card.bad { border-color: rgba(248,113,113,.45); background: rgba(248,113,113,.08); }
+.compare-card.good { border-color: rgba(6,214,160,.45); background: rgba(6,214,160,.08); }
 .compare-card h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
 .compare-card.bad h4 { color: var(--red); }
-.compare-card.good h4 { color: var(--green); }
+.compare-card.good h4 { color: var(--teal); }
 .compare-card ul { list-style: none; }
-.compare-card li { font-size: 0.85rem; padding: 5px 0; display: flex; gap: 8px; color: var(--ink2); border-bottom: 1px solid rgba(0,0,0,0.05); }
+.compare-card li { font-size: 0.85rem; padding: 5px 0; display: flex; gap: 8px; color: var(--text-2); border-bottom: 1px solid rgba(30,48,96,.55); }
 .compare-card li:last-child { border-bottom: none; }
 .compare-card.bad li::before { content: '✗'; color: var(--red); font-weight: 700; flex-shrink: 0; }
-.compare-card.good li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+.compare-card.good li::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; }
 
 /* ── INTERACTIVE CHECKLIST ── */
 .checklist-wrap {
-  background: var(--surface); border: 2px solid var(--border);
+  background: var(--surface); border: 1px solid var(--border2);
   border-radius: 14px; padding: 28px; margin: 32px 0;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-lg);
 }
 .checklist-wrap h3 { margin: 0 0 6px; font-size: 1.1rem; }
-.checklist-wrap .cl-sub { font-size: 0.85rem; color: var(--ink3); margin-bottom: 20px; }
-.cl-progress { height: 6px; background: var(--surface2); border-radius: 999px; margin-bottom: 20px; overflow: hidden; }
-.cl-progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #ff8c42); border-radius: 999px; transition: width 0.4s ease; width: 0%; }
-.cl-count { font-size: 0.78rem; color: var(--ink3); margin-bottom: 16px; }
-.cl-count strong { color: var(--accent); }
-.cl-section-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 700; color: var(--ink3); margin: 18px 0 8px; padding-top: 14px; border-top: 1px solid var(--border); }
+.checklist-wrap .cl-sub { font-size: 0.85rem; color: var(--text-3); margin-bottom: 20px; }
+.cl-progress { height: 6px; background: var(--surface2); border-radius: 999px; margin-bottom: 20px; overflow: hidden; border:1px solid rgba(30,48,96,.55) }
+.cl-progress-bar { height: 100%; background: linear-gradient(90deg, var(--amber), var(--orange)); border-radius: 999px; transition: width 0.4s ease; width: 0%; }
+.cl-count { font-size: 0.78rem; color: var(--text-3); margin-bottom: 16px; }
+.cl-count strong { color: var(--amber); }
+.cl-section-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 800; color: var(--text-3); margin: 18px 0 8px; padding-top: 14px; border-top: 1px solid var(--border); }
 .cl-item {
   display: flex; align-items: flex-start; gap: 12px;
   padding: 10px 0;
@@ -396,104 +430,197 @@ p { margin-bottom: 16px; color: var(--ink2); line-height: 1.8; }
 .cl-item:last-child { border-bottom: none; }
 .cl-checkbox {
   width: 20px; height: 20px; border-radius: 5px;
-  border: 2px solid var(--border);
+  border: 2px solid var(--border2);
   flex-shrink: 0; margin-top: 2px;
   display: flex; align-items: center; justify-content: center;
   transition: all 0.2s; background: var(--surface);
 }
-.cl-item.done .cl-checkbox { background: var(--green); border-color: var(--green); }
+.cl-item.done .cl-checkbox { background: var(--teal); border-color: var(--teal); }
 .cl-item.done .cl-checkbox::after { content: '✓'; color: #fff; font-size: 0.75rem; font-weight: 800; }
 .cl-text { flex: 1; }
-.cl-label { font-size: 0.9rem; font-weight: 600; color: var(--ink); transition: color 0.2s; }
-.cl-item.done .cl-label { text-decoration: line-through; color: var(--ink3); }
-.cl-note { font-size: 0.78rem; color: var(--ink3); margin-top: 2px; }
+.cl-label { font-size: 0.9rem; font-weight: 700; color: var(--text); transition: color 0.2s; }
+.cl-item.done .cl-label { text-decoration: line-through; color: var(--text-3); }
+.cl-note { font-size: 0.78rem; color: var(--text-3); margin-top: 2px; }
 .cl-impact { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 2px 7px; border-radius: 4px; flex-shrink: 0; margin-top: 3px; align-self: flex-start; }
-.cl-high { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
-.cl-med { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
-.cl-low { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.cl-high { background: rgba(248,113,113,.12); color: var(--red); border: 1px solid rgba(248,113,113,.35); }
+.cl-med { background: rgba(245,158,11,.12); color: var(--amber); border: 1px solid rgba(245,158,11,.35); }
+.cl-low { background: rgba(59,130,246,.12); color: var(--blue-light); border: 1px solid rgba(59,130,246,.35); }
 
 /* ── FAQ ── */
 .faq-item { border-bottom: 1px solid var(--border); }
 .faq-trigger {
   width: 100%; text-align: left; background: none; border: none;
-  padding: 18px 0; font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.97rem; font-weight: 700; color: var(--ink);
+  padding: 18px 0; font-family: 'Sora', sans-serif;
+  font-size: 0.97rem; font-weight: 800; color: var(--text);
   cursor: pointer; display: flex; justify-content: space-between; align-items: center;
   gap: 12px;
 }
-.faq-trigger .faq-icon { font-size: 1.2rem; color: var(--accent); transition: transform 0.25s; flex-shrink: 0; }
+.faq-trigger .faq-icon { font-size: 1.2rem; color: var(--amber); transition: transform 0.25s; flex-shrink: 0; }
 .faq-trigger.open .faq-icon { transform: rotate(45deg); }
-.faq-body { font-size: 0.9rem; color: var(--ink2); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s; }
+.faq-body { font-size: 0.9rem; color: var(--text-2); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s; }
 .faq-body.open { max-height: 400px; padding-bottom: 16px; }
 
 /* ── TABLE ── */
-.table-wrap { overflow-x: auto; margin: 20px 0; border-radius: var(--radius); border: 1px solid var(--border); }
+.table-wrap { overflow-x: auto; margin: 20px 0; border-radius: var(--radius); border: 1px solid var(--border2); background: var(--surface); box-shadow: var(--shadow); }
 table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
 thead { background: var(--surface2); }
-th { padding: 12px 16px; text-align: left; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--ink3); font-weight: 700; border-bottom: 1px solid var(--border); white-space: nowrap; }
-td { padding: 11px 16px; color: var(--ink2); border-bottom: 1px solid var(--border); vertical-align: top; }
+th { padding: 12px 16px; text-align: left; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-3); font-weight: 800; border-bottom: 1px solid var(--border); white-space: nowrap; }
+td { padding: 11px 16px; color: var(--text-2); border-bottom: 1px solid var(--border); vertical-align: top; }
 tr:last-child td { border-bottom: none; }
 tr:hover td { background: var(--surface2); }
-.td-good { color: var(--green); font-weight: 700; }
+.td-good { color: var(--teal); font-weight: 800; }
 .td-bad { color: var(--red); font-weight: 600; }
-.td-ok { color: var(--yellow); font-weight: 600; }
+.td-ok { color: var(--amber); font-weight: 700; }
 
 /* ── SIDEBAR ── */
 .sidebar { position: sticky; top: 80px; }
 .sidebar-card {
-  background: var(--surface); border: 1px solid var(--border);
+  background: var(--surface); border: 1px solid var(--border2);
   border-radius: var(--radius); padding: 20px; margin-bottom: 20px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
 }
-.sidebar-card h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--ink3); margin-bottom: 12px; font-weight: 700; }
+.sidebar-card h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-3); margin-bottom: 12px; font-weight: 800; }
 .toc-list { list-style: none; }
 .toc-list li { border-bottom: 1px solid var(--border); }
-.toc-list a { display: block; padding: 8px 0; font-size: 0.82rem; color: var(--ink2); text-decoration: none; transition: color 0.15s; }
-.toc-list a:hover { color: var(--accent); }
-.toc-list .toc-active a { color: var(--accent); font-weight: 700; }
+.toc-list a { display: block; padding: 8px 0; font-size: 0.82rem; color: var(--text-2); text-decoration: none; transition: color 0.15s; }
+.toc-list a:hover { color: var(--amber); }
+.toc-list .toc-active a { color: var(--amber); font-weight: 800; }
 .host-rec {
-  background: var(--accent-bg); border: 1px solid var(--accent-border);
-  border-radius: var(--radius); padding: 18px; text-align: center;
+  background: rgba(245,158,11,.08); border: 1px solid rgba(245,158,11,.35);
+  border-radius: var(--radius); padding: 18px; text-align: center; box-shadow: var(--shadow);
 }
-.host-rec .hr-tag { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-.host-rec .hr-name { font-size: 1.1rem; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
-.host-rec .hr-detail { font-size: 0.8rem; color: var(--ink3); margin-bottom: 14px; }
+.host-rec .hr-tag { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; color: var(--amber); margin-bottom: 8px; }
+.host-rec .hr-name { font-size: 1.1rem; font-weight: 900; color: var(--text); margin-bottom: 4px; }
+.host-rec .hr-detail { font-size: 0.8rem; color: var(--text-3); margin-bottom: 14px; line-height:1.55; }
 .btn {
   display: block; width: 100%; text-align: center;
-  background: var(--accent); color: #fff;
+  background: var(--amber); color: #000;
   border-radius: 8px; padding: 12px;
-  font-size: 0.85rem; font-weight: 700; text-decoration: none;
+  font-size: 0.85rem; font-weight: 900; text-decoration: none;
   transition: background 0.15s;
 }
-.btn:hover { background: #c44d10; }
+.btn:hover { background: var(--amber-light); }
 
 /* ── ARTICLE FOOTER ── */
-.article-footer { border-top: 1px solid var(--border); margin-top: 72px; padding: 36px 0; font-size: 0.8rem; color: var(--ink3); }
+.article-footer { border-top: 1px solid var(--border); margin-top: 72px; padding: 36px 0; font-size: 0.8rem; color: var(--text-3); }
 
 code {
   font-family: 'Menlo', 'Monaco', monospace;
   font-size: 0.82em;
-  background: var(--surface2); border: 1px solid var(--border);
+  background: var(--surface2); border: 1px solid var(--border2);
   padding: 2px 6px; border-radius: 4px; color: var(--accent);
 }
 pre {
-  background: var(--ink); color: #e2e8f0;
+  background: rgba(8,12,24,.9); color: #e2e8f0;
   padding: 18px 20px; border-radius: var(--radius);
   font-size: 0.82rem; overflow-x: auto; margin: 16px 0; line-height: 1.6;
+  border: 1px solid var(--border2);
 }
 pre code { background: none; border: none; padding: 0; color: inherit; }
+
+/* Fix old inline accent variable uses */
+:root { --accent: var(--amber); }
+
+/* ─── FOOTER (home) ─── */
+.footer{background:var(--bg2);border-top:1px solid var(--border2);padding:72px 0 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--border)}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.footer-grid{grid-template-columns:1fr}}
+.footer-brand .footer-logo{text-decoration:none;display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
+.footer-brand .footer-logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--amber),#f97316);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:900;color:#000}
+.footer-brand .footer-logo-text{font-size:1.1rem;font-weight:800;color:var(--text)}
+.footer-brand .footer-logo-text em{font-style:normal;color:var(--amber)}
+.footer-tagline{font-size:.85rem;color:var(--text-2);line-height:1.65;margin-bottom:20px;max-width:280px}
+.footer-social{display:flex;gap:10px}
+.social-btn{width:36px;height:36px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:.9rem;text-decoration:none;color:var(--text-2);transition:all .2s}
+.social-btn:hover{border-color:var(--amber);color:var(--amber);background:var(--amber-glow)}
+.footer-col h4{font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-3);margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col a{font-size:.85rem;color:var(--text-2);text-decoration:none;transition:color .15s;display:flex;align-items:center;gap:6px}
+.footer-col a:hover{color:var(--amber)}
+.footer-col a .cs-tag{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:1px 5px;border-radius:3px;background:var(--surface2);border:1px solid var(--border);color:var(--text-3)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding:20px 0;flex-wrap:wrap;gap:12px}
+.footer-bottom-left{font-size:.78rem;color:var(--text-3)}
+.footer-bottom-right{display:flex;gap:20px;flex-wrap:wrap}
+.footer-bottom-right a{font-size:.78rem;color:var(--text-3);text-decoration:none;transition:color .15s}
+.footer-bottom-right a:hover{color:var(--amber)}
+.footer-disclaimer{background:var(--bg);border-top:1px solid var(--border);padding:16px 0;font-size:.72rem;color:var(--text-3);line-height:1.6;text-align:center}
+
+/* ─── SCROLL TOP (home) ─── */
+.scroll-top{position:fixed;bottom:28px;right:28px;z-index:900;width:44px;height:44px;border-radius:50%;background:var(--amber);color:#000;border:none;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(245,158,11,.4);opacity:0;transform:translateY(10px);transition:all .3s}
+.scroll-top.visible{opacity:1;transform:translateY(0)}
+.scroll-top:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,158,11,.55)}
 </style>
 </head>
 <body>
 
+<!-- TOAST -->
+<div id="toast">
+  <span class="toast-icon">🚧</span>
+  <span id="toast-msg">This page is coming soon!</span>
+  <div class="toast-bar"></div>
+</div>
+
 <div class="progress-bar" id="progressBar"></div>
 
-<header class="site-header">
-  <div class="header-inner">
-    <a href="https://hostingjoy.com" class="logo">Hosting<em>Joy</em></a>
-    <div class="score-badge">34 → 96 PageSpeed in one afternoon</div>
+<!-- ════ NAVBAR (home) ════ -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="HostingJoy Home">
+      <div class="nav-logo-icon">HJ</div>
+      <span class="nav-logo-text">Hosting<em>Joy</em></span>
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dropdown">
+        <a href="best-web-hosting.html">Reviews</a>
+        <div class="dropdown-menu">
+          <a href="best-web-hosting.html"><span>🏆</span> Best Web Hosting 2026</a>
+          <a href="shared-hosting.html"><span>🌐</span> Shared Hosting</a>
+          <a href="wordpress-hosting.html"><span>🎯</span> WordPress Hosting</a>
+          <a href="vps-hosting.html"><span>⚡</span> VPS Hosting</a>
+          <a href="managed-hosting.html"><span>☁️</span> Managed Hosting</a>
+          <a href="cheap-hosting.html"><span>💰</span> Cheap Hosting</a>
+        </div>
+      </li>
+      <li class="nav-dropdown nav-active">
+        <a href="how-to-speed-up-wordpress.html">Guides</a>
+        <div class="dropdown-menu">
+          <a href="how-to-speed-up-wordpress.html"><span>🚀</span> Speed Up WordPress</a>
+          <a href="start-a-blog.html"><span>✍️</span> Start a Blog</a>
+          <a href="move-website.html"><span>🔄</span> Migrate Your Website</a>
+          <a href="wordpress-security.html"><span>🔒</span> WordPress Security</a>
+        </div>
+      </li>
+      <li><a href="compare.html">Compare</a></li>
+      <li><a href="deals.html">Deals 🔥</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="#newsletter" class="btn-ghost">Newsletter</a>
+      <a href="best-web-hosting.html" class="btn-primary">Find Your Host →</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
-</header>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <a href="index.html">🏠 Home</a>
+  <a href="best-web-hosting.html">🏆 Best Web Hosting 2026</a>
+  <a href="how-to-speed-up-wordpress.html">🚀 Speed Up WordPress</a>
+  <a href="shared-hosting.html">🌐 Shared Hosting Reviews</a>
+  <a href="wordpress-hosting.html">🎯 WordPress Hosting</a>
+  <a href="vps-hosting.html">⚡ VPS Hosting</a>
+  <a href="deals.html">🔥 Hosting Deals</a>
+  <a href="compare.html">📊 Compare Hosts</a>
+  <a href="about.html">About HostingJoy</a>
+  <a href="best-web-hosting.html" class="btn-primary" style="margin-top:16px;text-align:center;">Find Your Host →</a>
+</div>
 
 <main>
 <div class="page-wrap">
@@ -632,7 +759,7 @@ pre code { background: none; border: none; padding: 0; color: inherit; }
             </tbody>
           </table>
         </div>
-        <p style="font-size:0.78rem;color:var(--ink3);">PSI scores measured on identical WordPress installations (Astra theme, Hello World post, no other plugins) — April 2026.</p>
+        <p style="font-size:0.78rem;color:var(--text-3);">PSI scores measured on identical WordPress installations (Astra theme, Hello World post, no other plugins) — April 2026.</p>
       </section>
 
       <!-- FIX 2 -->
@@ -1183,7 +1310,7 @@ pre code { background: none; border: none; padding: 0; color: inherit; }
         <div class="hr-name">Hostinger</div>
         <div class="hr-detail">LiteSpeed servers · 148ms TTFB<br>Fastest shared hosting tested 2026<br>Free LiteSpeed Cache plugin</div>
         <a href="https://hostingjoy.com/go/hostinger" class="btn">Get Hostinger → Best Deal</a>
-        <p style="font-size:0.7rem;color:var(--ink3);margin-top:8px;">From $2.49/mo · 30-day money back</p>
+        <p style="font-size:0.7rem;color:var(--text-3);margin-top:8px;">From $2.49/mo · 30-day money back</p>
       </div>
 
       <div class="sidebar-card">
@@ -1200,20 +1327,124 @@ pre code { background: none; border: none; padding: 0; color: inherit; }
     </aside>
   </div>
 
-  <div class="article-footer">
+  <div class="article-footer" id="newsletter">
     <p><strong>About This Guide:</strong> Written by the HostingJoy Editorial Team based on hands-on testing of real WordPress sites. We tested each optimization technique on live sites and measured before/after PageSpeed scores using Google PageSpeed Insights and GTmetrix. This article contains affiliate links — if you purchase through our links, we may earn a commission at no extra cost to you.</p>
     <p style="margin-top:8px;"><strong>Last Updated:</strong> April 20, 2026 · <strong>Related:</strong> <a href="https://www.hostingjoy.com/best-web-hosting/best-web-hosting-2026.html" style="color:var(--accent);">Best Web Hosting 2026</a> · <a href="https://www.hostingjoy.com/how-to-speed-up-wordpress/how-to-speed-up-wordpress-website.html" style="color:var(--accent);">Best WordPress Hosting</a></p>
   </div>
 </div>
 </main>
 
+<!-- ════ FOOTER (home) ════ -->
+<footer class="footer" role="contentinfo">
+  <div class="page-wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo" aria-label="HostingJoy">
+          <div class="footer-logo-icon">HJ</div>
+          <span class="footer-logo-text">Hosting<em>Joy</em></span>
+        </a>
+        <p class="footer-tagline">Independent web hosting reviews built on 90 days of real test data. No paid placements. Just honest data.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Twitter/X" onclick="showToast('Follow us on X — coming soon!');return false">𝕏</a>
+          <a href="#" class="social-btn" aria-label="YouTube" onclick="showToast('YouTube channel — coming soon!');return false">▶</a>
+          <a href="#" class="social-btn" aria-label="LinkedIn" onclick="showToast('LinkedIn — coming soon!');return false">in</a>
+          <a href="#newsletter" class="social-btn" aria-label="Newsletter">✉</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Reviews</h4>
+        <ul>
+          <li><a href="best-web-hosting.html">Best Web Hosting 2026</a></li>
+          <li><a href="wordpress-hosting.html">WordPress Hosting <span class="cs-tag">Soon</span></a></li>
+          <li><a href="vps-hosting.html">VPS Hosting <span class="cs-tag">Soon</span></a></li>
+          <li><a href="managed-hosting.html">Managed Hosting <span class="cs-tag">Soon</span></a></li>
+          <li><a href="cheap-hosting.html">Cheap Hosting <span class="cs-tag">Soon</span></a></li>
+          <li><a href="ecommerce-hosting.html">E-Commerce Hosting <span class="cs-tag">Soon</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Guides &amp; Tools</h4>
+        <ul>
+          <li><a href="how-to-speed-up-wordpress.html">Speed Up WordPress</a></li>
+          <li><a href="start-a-blog.html">Start a Blog <span class="cs-tag">Soon</span></a></li>
+          <li><a href="move-website.html">Migrate Your Site <span class="cs-tag">Soon</span></a></li>
+          <li><a href="compare.html">Compare Hosts <span class="cs-tag">Soon</span></a></li>
+          <li><a href="deals.html">Hosting Deals 🔥 <span class="cs-tag">Soon</span></a></li>
+          <li><a href="glossary.html">Hosting Glossary <span class="cs-tag">Soon</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us <span class="cs-tag">Soon</span></a></li>
+          <li><a href="best-web-hosting.html#methodology">Our Methodology</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+          <li><a href="contact.html">Contact <span class="cs-tag">Soon</span></a></li>
+          <li><a href="sitemap.xml">Sitemap <span class="cs-tag">Soon</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">© 2026 HostingJoy.com · All rights reserved</div>
+      <div class="footer-bottom-right">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="affiliate-disclosure.html">Affiliate Disclosure</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-disclaimer">
+    <div class="page-wrap">
+      HostingJoy.com is reader-supported. When you purchase through links on our site, we may earn an affiliate commission at no extra cost to you. This does not influence our rankings or recommendations — providers are ranked exclusively on performance data from our independent testing. All pricing data reflects introductory rates as of April 2026 and is subject to change.
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+
 <script>
+/* ── Toast system (home) ── */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  const m = document.getElementById('toast-msg');
+  clearTimeout(toastTimer);
+  m.textContent = msg || 'This page is coming soon!';
+  t.classList.remove('show');
+  void t.offsetWidth; // reflow to restart animation
+  t.classList.add('show');
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+/* ── Navbar scroll + scroll-to-top (home) ── */
+const navbar = document.getElementById('navbar');
+const scrollBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+  scrollBtn.classList.toggle('visible', window.scrollY > 400);
+}, {passive:true});
+scrollBtn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ── Mobile menu (home) ── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+
 // ── Reading progress bar
-const bar = document.getElementById('progressBar');
+const progressBarEl = document.getElementById('progressBar');
 window.addEventListener('scroll', () => {
   const d = document.documentElement;
   const p = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
-  bar.style.width = Math.min(p, 100) + '%';
+  progressBarEl.style.width = Math.min(p, 100) + '%';
 });
 
 // ── Interactive Checklist
