@@ -2,6 +2,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HGGXW6PRVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HGGXW6PRVK');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HostingJoy — Web Hosting Reviews You Can Actually Trust | 2026</title>
@@ -12,6 +21,11 @@
 <meta property="og:description" content="Real 90-day test data on 12+ hosting providers. No bias, no paid rankings. Find the perfect host for your site.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hostingjoy.com/">
+<meta property="og:site_name" content="HostingJoy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HostingJoy — Hosting Reviews You Can Actually Trust">
+<meta name="twitter:description" content="Real 90-day test data on 12+ hosting providers. No bias, no paid rankings. Find the perfect host for your site.">
+<meta name="twitter:url" content="https://hostingjoy.com/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"HostingJoy","url":"https://hostingjoy.com","description":"Independent web hosting reviews and tutorials based on real testing data.","publisher":{"@type":"Organization","name":"HostingJoy","url":"https://hostingjoy.com"},"potentialAction":{"@type":"SearchAction","target":"https://hostingjoy.com/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
