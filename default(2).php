@@ -1,0 +1,937 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HostingJoy — Web Hosting Reviews You Can Actually Trust | 2026</title>
+<meta name="description" content="Independent web hosting reviews based on real 90-day tests. No paid placements. Just honest data on uptime, speed, pricing, and support — so you pick the right host the first time.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://hostingjoy.com/">
+<meta property="og:title" content="HostingJoy — Hosting Reviews You Can Actually Trust">
+<meta property="og:description" content="Real 90-day test data on 12+ hosting providers. No bias, no paid rankings. Find the perfect host for your site.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hostingjoy.com/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"HostingJoy","url":"https://hostingjoy.com","description":"Independent web hosting reviews and tutorials based on real testing data.","publisher":{"@type":"Organization","name":"HostingJoy","url":"https://hostingjoy.com"},"potentialAction":{"@type":"SearchAction","target":"https://hostingjoy.com/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════
+   HOSTINGJOY UNIFIED DESIGN SYSTEM 2026
+   Primary: Dark Navy (#080c18) + Amber (#f59e0b)
+   Consistent across: index.html, best-web-hosting.html,
+   how-to-speed-up-wordpress.html
+══════════════════════════════════════════════════════ */
+:root {
+  --bg:#080c18; --bg2:#0d1526; --surface:#111d33;
+  --surface2:#162240; --surface3:#1c2b4e;
+  --border:#1e3060; --border2:#243a72;
+  --text:#eef2ff; --text-2:#a8b8d8; --text-3:#5a7098; --text-inv:#080c18;
+  --amber:#f59e0b; --amber-light:#fcd34d;
+  --amber-dim:rgba(245,158,11,0.15); --amber-glow:rgba(245,158,11,0.08);
+  --blue:#3b82f6; --blue-light:#60a5fa; --blue-dim:rgba(59,130,246,0.12);
+  --teal:#06d6a0; --teal-dim:rgba(6,214,160,0.12);
+  --orange:#e05c1a; --orange-dim:rgba(224,92,26,0.12);
+  --green:#10b981; --red:#f87171; --gold:#fbbf24;
+  --radius-sm:8px; --radius:12px; --radius-lg:20px;
+  --shadow:0 4px 24px rgba(0,0,0,0.5);
+  --shadow-lg:0 16px 64px rgba(0,0,0,0.6);
+  --glow-amber:0 0 40px rgba(245,158,11,0.2);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.4}
+.page-wrap{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-bottom:16px}
+.section-label::before,.section-label::after{content:'';width:20px;height:1.5px;background:var(--amber)}
+
+/* ─── TOAST NOTIFICATION ─── */
+#toast {
+  position:fixed; bottom:32px; left:50%; transform:translateX(-50%) translateY(80px);
+  background:var(--surface); border:1px solid var(--border2); border-radius:var(--radius);
+  padding:14px 24px; font-size:.88rem; font-weight:600; color:var(--text-2);
+  box-shadow:var(--shadow-lg); z-index:9999;
+  display:flex; align-items:center; gap:10px;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1), opacity .3s;
+  opacity:0; pointer-events:none; white-space:nowrap;
+}
+#toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+#toast .toast-icon { font-size:1.1rem; }
+#toast .toast-bar {
+  position:absolute; bottom:0; left:0; height:3px;
+  background:linear-gradient(90deg,var(--amber),var(--orange));
+  border-radius:0 0 var(--radius) var(--radius);
+  animation:toastBar 3s linear forwards;
+}
+@keyframes toastBar{from{width:100%}to{width:0%}}
+
+/* ─── NAVBAR ─── */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .3s ease}
+.navbar.scrolled{background:rgba(8,12,24,.97);border-bottom:1px solid var(--border);backdrop-filter:blur(20px);box-shadow:0 4px 24px rgba(0,0,0,.4)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:70px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo{text-decoration:none;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-logo-icon{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--amber),#f97316);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:900;color:#000;box-shadow:var(--glow-amber)}
+.nav-logo-text{font-size:1.15rem;font-weight:800;color:var(--text);letter-spacing:-.5px}
+.nav-logo-text em{font-style:normal;color:var(--amber)}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{display:block;padding:8px 14px;font-size:.85rem;font-weight:600;color:var(--text-2);text-decoration:none;border-radius:var(--radius-sm);transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--text);background:var(--surface)}
+.nav-links .nav-active a{color:var(--amber)}
+.nav-dropdown{position:relative}
+.nav-dropdown>a::after{content:' ▾';font-size:.65rem;opacity:.6}
+.dropdown-menu{position:absolute;top:calc(100% + 8px);left:0;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:8px;min-width:220px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .2s ease}
+.nav-dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown-menu a{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--radius-sm);font-size:.82rem;color:var(--text-2);text-decoration:none;transition:color .15s,background .15s}
+.dropdown-menu a:hover{color:var(--text);background:var(--surface2)}
+.dropdown-menu a span{font-size:1.1rem}
+.nav-right{display:flex;align-items:center;gap:12px}
+.btn-ghost{padding:8px 16px;border-radius:var(--radius-sm);border:1px solid var(--border2);color:var(--text-2);font-size:.83rem;font-weight:600;background:transparent;cursor:pointer;text-decoration:none;transition:all .2s}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+.btn-primary{padding:9px 20px;border-radius:var(--radius-sm);background:var(--amber);color:#000;font-size:.83rem;font-weight:800;border:none;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 4px 12px rgba(245,158,11,.3)}
+.btn-primary:hover{background:var(--amber-light);box-shadow:0 4px 20px rgba(245,158,11,.45);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text-2);border-radius:2px;transition:all .25s}
+@media(max-width:900px){.nav-links,.nav-right .btn-ghost{display:none}.hamburger{display:flex}}
+.mobile-menu{position:fixed;top:70px;left:0;right:0;bottom:0;z-index:999;background:rgba(8,12,24,.98);backdrop-filter:blur(20px);padding:24px;display:none;flex-direction:column;gap:8px;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{padding:14px 16px;border-radius:var(--radius);color:var(--text-2);font-size:1rem;font-weight:600;text-decoration:none;border:1px solid transparent;transition:all .2s}
+.mobile-menu a:hover{border-color:var(--border2);color:var(--text);background:var(--surface)}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 80px}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-bg-orb{position:absolute;border-radius:50%;filter:blur(80px);animation:floatOrb 12s ease-in-out infinite alternate}
+.orb-1{width:600px;height:600px;background:rgba(59,130,246,.12);top:-200px;right:-100px;animation-delay:0s}
+.orb-2{width:400px;height:400px;background:rgba(245,158,11,.10);bottom:-100px;left:-100px;animation-delay:-4s}
+.orb-3{width:300px;height:300px;background:rgba(6,214,160,.08);top:40%;left:30%;animation-delay:-8s}
+@keyframes floatOrb{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,20px) scale(1.05)}}
+.hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(30,48,96,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(30,48,96,.3) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%)}
+.hero-inner{display:grid;grid-template-columns:1fr 480px;gap:64px;align-items:center;position:relative;z-index:1}
+@media(max-width:1000px){.hero-inner{grid-template-columns:1fr;gap:48px}}
+.trust-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:999px;padding:8px 16px;margin-bottom:24px}
+.trust-badge-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.trust-badge-text{font-size:.75rem;font-weight:700;letter-spacing:.5px;color:var(--amber)}
+.hero-h1{font-family:'Lora',serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:600;line-height:1.12;letter-spacing:-1px;color:var(--text);margin-bottom:24px}
+.hero-h1 .underline{position:relative;display:inline-block}
+.hero-h1 .underline::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--amber),var(--orange));border-radius:2px}
+.hero-h1 .highlight{color:var(--amber)}
+.hero-sub{font-size:1.1rem;color:var(--text-2);line-height:1.75;max-width:540px;margin-bottom:36px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:48px}
+.btn-hero-primary{display:inline-flex;align-items:center;gap:8px;padding:15px 32px;border-radius:var(--radius);background:var(--amber);color:#000;font-size:.95rem;font-weight:800;text-decoration:none;border:none;box-shadow:0 8px 32px rgba(245,158,11,.35);transition:all .25s}
+.btn-hero-primary:hover{background:var(--amber-light);transform:translateY(-2px);box-shadow:0 12px 40px rgba(245,158,11,.5)}
+.btn-hero-secondary{display:inline-flex;align-items:center;gap:8px;padding:15px 28px;border-radius:var(--radius);background:var(--surface);color:var(--text);font-size:.95rem;font-weight:700;text-decoration:none;border:1px solid var(--border2);transition:all .25s}
+.btn-hero-secondary:hover{border-color:var(--blue);color:var(--blue-light);background:var(--surface2)}
+.arrow-icon{font-size:1rem;transition:transform .2s}
+.btn-hero-primary:hover .arrow-icon{transform:translateX(4px)}
+.proof-strip{display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+.proof-item{display:flex;align-items:center;gap:8px}
+.proof-num{font-size:1.25rem;font-weight:800;color:var(--text)}
+.proof-label{font-size:.78rem;color:var(--text-3);line-height:1.3}
+.proof-div{width:1px;height:32px;background:var(--border2)}
+
+/* Hero panel */
+.hero-panel{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);position:relative}
+.hero-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--teal),var(--amber))}
+.panel-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.panel-dots{display:flex;gap:6px}
+.panel-dots span{width:10px;height:10px;border-radius:50%}
+.dot-r{background:#f87171}.dot-y{background:var(--amber)}.dot-g{background:var(--teal)}
+.panel-title{font-size:.72rem;font-weight:700;color:var(--text-3);letter-spacing:1px;text-transform:uppercase}
+.panel-live{display:flex;align-items:center;gap:5px;font-size:.65rem;font-weight:700;letter-spacing:1px;color:var(--teal);text-transform:uppercase}
+.panel-live::before{content:'●';animation:pulse 1.5s infinite}
+.panel-body{padding:20px}
+.panel-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
+.panel-row:last-child{border-bottom:none;padding-bottom:0}
+.pr-host{display:flex;align-items:center;gap:12px}
+.pr-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:900;color:#fff;flex-shrink:0}
+.pr-name{font-size:.88rem;font-weight:700;color:var(--text)}
+.pr-tag{font-size:.68rem;color:var(--text-3)}
+.pr-stats{display:flex;gap:16px;align-items:center}
+.pr-stat{text-align:right}
+.pr-stat-val{font-size:.88rem;font-weight:700}
+.pr-stat-label{font-size:.62rem;color:var(--text-3)}
+.val-green{color:var(--teal)}
+.score-chip{padding:4px 10px;border-radius:999px;font-size:.72rem;font-weight:800;background:rgba(16,185,129,.15);color:var(--teal);border:1px solid rgba(16,185,129,.3)}
+
+/* ─── TICKER ─── */
+.ticker-bar{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:12px 0;overflow:hidden;position:relative;z-index:2}
+.ticker-inner{display:flex;gap:0;animation:ticker 30s linear infinite;white-space:nowrap}
+.ticker-inner:hover{animation-play-state:paused}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{display:inline-flex;align-items:center;gap:8px;padding:0 32px;font-size:.78rem;font-weight:600;color:var(--text-3);flex-shrink:0}
+.ticker-item .tick-val{color:var(--teal);font-weight:700}
+
+/* ─── STATS BANNER ─── */
+.stats-banner{background:var(--surface);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:48px 0}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+@media(max-width:700px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+.stat-block{padding:24px;text-align:center;border-right:1px solid var(--border)}
+.stat-block:last-child{border-right:none}
+.stat-block .sb-num{font-size:clamp(2rem,4vw,2.8rem);font-weight:900;color:var(--amber);line-height:1;margin-bottom:6px}
+.stat-block .sb-label{font-size:.82rem;color:var(--text-2);font-weight:500}
+.stat-block .sb-sub{font-size:.7rem;color:var(--text-3);margin-top:3px}
+
+/* ─── POSTS ─── */
+.posts-section{padding:96px 0}
+.posts-grid{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-top:48px}
+@media(max-width:900px){.posts-grid{grid-template-columns:1fr}}
+.post-featured{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,transform .25s;text-decoration:none;color:inherit;position:relative}
+.post-featured:hover{border-color:var(--amber);transform:translateY(-3px)}
+.post-featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--amber),var(--orange))}
+.pf-visual{height:220px;background:var(--surface2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.pf-visual-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(59,130,246,.18) 0%,transparent 70%),radial-gradient(ellipse at 20% 80%,rgba(245,158,11,.12) 0%,transparent 60%)}
+.pf-visual-text{position:relative;z-index:1;text-align:center}
+.pf-score{font-size:4rem;font-weight:900;color:var(--teal);line-height:1}
+.pf-score-label{font-size:.78rem;color:var(--text-2);font-weight:600;letter-spacing:.5px}
+.pf-body{padding:28px;flex:1;display:flex;flex-direction:column}
+.pf-category{font-size:.68rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.pf-title{font-family:'Lora',serif;font-size:1.3rem;font-weight:600;line-height:1.3;color:var(--text);margin-bottom:12px}
+.pf-excerpt{font-size:.88rem;color:var(--text-2);line-height:1.7;margin-bottom:20px;flex:1}
+.pf-meta{display:flex;align-items:center;justify-content:space-between;font-size:.75rem;color:var(--text-3);flex-wrap:wrap;gap:8px}
+.pf-meta-left{display:flex;gap:16px;align-items:center}
+.read-more{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700;color:var(--amber);transition:gap .2s}
+.post-featured:hover .read-more{gap:10px}
+.post-list{display:flex;flex-direction:column;gap:16px}
+.post-card-sm{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:20px;text-decoration:none;color:inherit;display:block;transition:border-color .2s,transform .2s;position:relative}
+.post-card-sm:hover{border-color:var(--blue);transform:translateX(4px)}
+.pcs-cat{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue-light);margin-bottom:6px}
+.pcs-title{font-size:.92rem;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:8px}
+.pcs-meta{font-size:.72rem;color:var(--text-3);display:flex;gap:12px}
+.pcs-arrow{float:right;color:var(--amber);font-size:.8rem}
+/* Coming soon badge on cards */
+.cs-badge{position:absolute;top:12px;right:12px;font-size:.6rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:var(--surface2);border:1px solid var(--border2);color:var(--text-3)}
+
+/* ─── COMPARISON ─── */
+.comparison-section{padding:96px 0;background:radial-gradient(ellipse at 50% 0%,rgba(59,130,246,.07) 0%,transparent 60%);border-top:1px solid var(--border)}
+.comparison-heading{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:40px}
+.section-eyebrow{max-width:640px}
+.section-title{font-family:'Lora',serif;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:600;line-height:1.2;color:var(--text);letter-spacing:-.5px;margin:8px 0 12px}
+.section-sub{font-size:.95rem;color:var(--text-2);line-height:1.65}
+.view-all-link{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;font-weight:700;color:var(--amber);text-decoration:none;white-space:nowrap;transition:gap .2s}
+.view-all-link:hover{gap:10px}
+.comp-table-wrap{overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--border2)}
+.comp-table{width:100%;border-collapse:collapse;min-width:700px}
+.comp-table thead{background:var(--surface)}
+.comp-table th{padding:14px 18px;text-align:left;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);font-weight:700;border-bottom:1px solid var(--border2)}
+.comp-table td{padding:16px 18px;color:var(--text-2);border-bottom:1px solid var(--border);vertical-align:middle;font-size:.88rem}
+.comp-table tbody tr:last-child td{border-bottom:none}
+.comp-table tbody tr:hover td{background:var(--surface2)}
+.comp-table tbody tr.row-featured td{background:rgba(245,158,11,.04)}
+.comp-table tbody tr.row-featured:hover td{background:rgba(245,158,11,.08)}
+.host-name-cell{display:flex;align-items:center;gap:12px}
+.host-avatar{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:900;color:#fff;flex-shrink:0}
+.host-cell-name{font-size:.95rem;font-weight:700;color:var(--text)}
+.host-cell-tag{font-size:.68rem;color:var(--text-3)}
+.badge-featured{font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:var(--amber-dim);color:var(--amber);border:1px solid rgba(245,158,11,.3)}
+.td-g{color:var(--teal);font-weight:700}.td-y{color:var(--amber);font-weight:600}.td-r{color:var(--red)}
+.score-pill{display:inline-block;padding:4px 12px;border-radius:999px;font-size:.78rem;font-weight:800}
+.sp-9{background:rgba(16,185,129,.15);color:var(--teal);border:1px solid rgba(16,185,129,.3)}
+.sp-8{background:rgba(59,130,246,.12);color:var(--blue-light);border:1px solid rgba(59,130,246,.3)}
+.comp-cta-cell a{display:inline-flex;align-items:center;gap:5px;font-size:.78rem;font-weight:700;color:var(--amber);text-decoration:none;transition:gap .15s}
+.comp-cta-cell a:hover{gap:9px}
+
+/* ─── TRUST ─── */
+.trust-section{padding:96px 0;position:relative}
+.trust-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:80px;background:linear-gradient(to bottom,var(--border2),transparent)}
+.trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--border2);border-radius:var(--radius-lg);overflow:hidden;margin-top:48px;background:var(--border2)}
+@media(max-width:700px){.trust-grid{grid-template-columns:1fr}}
+.trust-cell{background:var(--surface);padding:36px 32px;transition:background .2s}
+.trust-cell:hover{background:var(--surface2)}
+.trust-cell .tc-icon{font-size:2rem;margin-bottom:16px;width:56px;height:56px;border-radius:var(--radius);background:var(--surface2);display:flex;align-items:center;justify-content:center}
+.trust-cell h3{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:8px}
+.trust-cell p{font-size:.88rem;color:var(--text-2);line-height:1.65}
+
+/* ─── CATEGORIES ─── */
+.categories-section{padding:96px 0;border-top:1px solid var(--border)}
+.cats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+@media(max-width:800px){.cats-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.cats-grid{grid-template-columns:1fr}}
+.cat-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:28px 24px;text-decoration:none;color:inherit;display:block;transition:all .25s;position:relative;overflow:hidden}
+.cat-card:hover{transform:translateY(-4px)}
+.cat-card.cc-amber:hover{border-color:var(--amber);background:var(--surface2);box-shadow:0 8px 32px rgba(245,158,11,.12)}
+.cat-card.cc-blue:hover{border-color:var(--blue);background:var(--surface2);box-shadow:0 8px 32px rgba(59,130,246,.15)}
+.cat-card.cc-teal:hover{border-color:var(--teal);background:var(--surface2);box-shadow:0 8px 32px rgba(6,214,160,.12)}
+.cat-icon{width:52px;height:52px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:18px;transition:transform .2s}
+.cat-card:hover .cat-icon{transform:scale(1.1) rotate(-5deg)}
+.ci-blue{background:var(--blue-dim)}.ci-amber{background:var(--amber-dim)}.ci-teal{background:var(--teal-dim)}.ci-orange{background:var(--orange-dim)}
+.cat-name{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.cat-desc{font-size:.83rem;color:var(--text-2);line-height:1.6;margin-bottom:14px}
+.cat-count{font-size:.72rem;color:var(--text-3);font-weight:600}
+
+/* ─── NEWSLETTER ─── */
+.newsletter-section{padding:96px 0;border-top:1px solid var(--border)}
+.newsletter-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:64px;text-align:center;position:relative;overflow:hidden}
+@media(max-width:700px){.newsletter-card{padding:40px 24px}}
+.newsletter-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(245,158,11,.08) 0%,transparent 70%);pointer-events:none}
+.nl-badge{display:inline-flex;align-items:center;gap:6px;background:var(--amber-dim);border:1px solid rgba(245,158,11,.3);color:var(--amber);font-size:.72rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.nl-h2{font-family:'Lora',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:600;color:var(--text);margin-bottom:12px;line-height:1.25;position:relative;z-index:1}
+.nl-sub{font-size:.98rem;color:var(--text-2);margin-bottom:32px;line-height:1.6;position:relative;z-index:1}
+.nl-form{display:flex;gap:12px;max-width:480px;margin:0 auto 20px;position:relative;z-index:1}
+@media(max-width:550px){.nl-form{flex-direction:column}}
+.nl-input{flex:1;padding:14px 18px;border-radius:var(--radius);background:var(--bg);border:1px solid var(--border2);color:var(--text);font-family:'Sora',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}
+.nl-input::placeholder{color:var(--text-3)}
+.nl-input:focus{border-color:var(--amber)}
+.nl-submit{padding:14px 24px;border-radius:var(--radius);background:var(--amber);color:#000;font-family:'Sora',sans-serif;font-size:.9rem;font-weight:800;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(245,158,11,.3);white-space:nowrap}
+.nl-submit:hover{background:var(--amber-light)}
+.nl-privacy{font-size:.72rem;color:var(--text-3);position:relative;z-index:1}
+
+/* ─── TESTIMONIALS ─── */
+.testimonials-section{padding:96px 0;border-top:1px solid var(--border)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+@media(max-width:900px){.testi-grid{grid-template-columns:1fr}}
+.testi-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:28px}
+.testi-stars{color:var(--gold);font-size:.9rem;margin-bottom:14px;letter-spacing:2px}
+.testi-text{font-family:'Lora',serif;font-size:.95rem;color:var(--text-2);line-height:1.7;margin-bottom:20px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;color:#fff;flex-shrink:0}
+.testi-name{font-size:.88rem;font-weight:700;color:var(--text)}
+.testi-role{font-size:.72rem;color:var(--text-3)}
+
+/* ─── ABOUT ─── */
+.about-strip{padding:80px 0;border-top:1px solid var(--border);background:var(--bg2)}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+@media(max-width:800px){.about-inner{grid-template-columns:1fr;gap:40px}}
+.about-text p{font-size:.92rem;color:var(--text-2);line-height:1.75;margin-bottom:16px}
+.about-metrics{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.am-box{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:20px}
+.am-val{font-size:1.8rem;font-weight:900;color:var(--amber);line-height:1;margin-bottom:4px}
+.am-label{font-size:.78rem;color:var(--text-2);line-height:1.4}
+
+/* ─── FOOTER ─── */
+.footer{background:var(--bg2);border-top:1px solid var(--border2);padding:72px 0 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--border)}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.footer-grid{grid-template-columns:1fr}}
+.footer-brand .footer-logo{text-decoration:none;display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
+.footer-brand .footer-logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--amber),#f97316);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:900;color:#000}
+.footer-brand .footer-logo-text{font-size:1.1rem;font-weight:800;color:var(--text)}
+.footer-brand .footer-logo-text em{font-style:normal;color:var(--amber)}
+.footer-tagline{font-size:.85rem;color:var(--text-2);line-height:1.65;margin-bottom:20px;max-width:280px}
+.footer-social{display:flex;gap:10px}
+.social-btn{width:36px;height:36px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:.9rem;text-decoration:none;color:var(--text-2);transition:all .2s}
+.social-btn:hover{border-color:var(--amber);color:var(--amber);background:var(--amber-glow)}
+.footer-col h4{font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-3);margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col a{font-size:.85rem;color:var(--text-2);text-decoration:none;transition:color .15s;display:flex;align-items:center;gap:6px}
+.footer-col a:hover{color:var(--amber)}
+.footer-col a .cs-tag{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:1px 5px;border-radius:3px;background:var(--surface2);border:1px solid var(--border);color:var(--text-3)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding:20px 0;flex-wrap:wrap;gap:12px}
+.footer-bottom-left{font-size:.78rem;color:var(--text-3)}
+.footer-bottom-right{display:flex;gap:20px;flex-wrap:wrap}
+.footer-bottom-right a{font-size:.78rem;color:var(--text-3);text-decoration:none;transition:color .15s}
+.footer-bottom-right a:hover{color:var(--amber)}
+.footer-disclaimer{background:var(--bg);border-top:1px solid var(--border);padding:16px 0;font-size:.72rem;color:var(--text-3);line-height:1.6;text-align:center}
+
+/* ─── SCROLL TOP ─── */
+.scroll-top{position:fixed;bottom:28px;right:28px;z-index:900;width:44px;height:44px;border-radius:50%;background:var(--amber);color:#000;border:none;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(245,158,11,.4);opacity:0;transform:translateY(10px);transition:all .3s}
+.scroll-top.visible{opacity:1;transform:translateY(0)}
+.scroll-top:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,158,11,.55)}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.anim-1{animation:fadeUp .7s ease both}
+.anim-2{animation:fadeUp .7s .1s ease both}
+.anim-3{animation:fadeUp .7s .2s ease both}
+.anim-4{animation:fadeUp .7s .3s ease both}
+.anim-5{animation:fadeUp .7s .4s ease both}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-2{transition-delay:.1s}.reveal-3{transition-delay:.2s}.reveal-4{transition-delay:.3s}
+
+@media(max-width:600px){.proof-strip{gap:14px}.proof-div{display:none}}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div id="toast">
+  <span class="toast-icon">🚧</span>
+  <span id="toast-msg">This page is coming soon!</span>
+  <div class="toast-bar"></div>
+</div>
+
+<!-- ════ NAVBAR ════ -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="HostingJoy Home">
+      <div class="nav-logo-icon">HJ</div>
+      <span class="nav-logo-text">Hosting<em>Joy</em></span>
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li class="nav-active"><a href="index.html">Home</a></li>
+      <li class="nav-dropdown">
+        <a href="best-web-hosting.html">Reviews</a>
+        <div class="dropdown-menu">
+          <a href="best-web-hosting.html"><span>🏆</span> Best Web Hosting 2026</a>
+          <a href="#" onclick="showToast('Shared Hosting guide — coming soon!');return false"><span>🌐</span> Shared Hosting</a>
+          <a href="#" onclick="showToast('WordPress Hosting guide — coming soon!');return false"><span>🎯</span> WordPress Hosting</a>
+          <a href="#" onclick="showToast('VPS Hosting guide — coming soon!');return false"><span>⚡</span> VPS Hosting</a>
+          <a href="#" onclick="showToast('Managed Hosting guide — coming soon!');return false"><span>☁️</span> Managed Hosting</a>
+          <a href="#" onclick="showToast('Cheap Hosting guide — coming soon!');return false"><span>💰</span> Cheap Hosting</a>
+        </div>
+      </li>
+      <li class="nav-dropdown">
+        <a href="how-to-speed-up-wordpress.html">Guides</a>
+        <div class="dropdown-menu">
+          <a href="how-to-speed-up-wordpress.html"><span>🚀</span> Speed Up WordPress</a>
+          <a href="#" onclick="showToast('Start a Blog guide — coming soon!');return false"><span>✍️</span> Start a Blog</a>
+          <a href="#" onclick="showToast('Website Migration guide — coming soon!');return false"><span>🔄</span> Migrate Your Website</a>
+          <a href="#" onclick="showToast('WordPress Security guide — coming soon!');return false"><span>🔒</span> WordPress Security</a>
+        </div>
+      </li>
+      <li><a href="#" onclick="showToast('Compare tool — coming soon!');return false">Compare</a></li>
+      <li><a href="#" onclick="showToast('Deals page — coming soon! 🔥');return false">Deals 🔥</a></li>
+      <li><a href="#" onclick="showToast('About page — coming soon!');return false">About</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="#newsletter" class="btn-ghost">Newsletter</a>
+      <a href="best-web-hosting.html" class="btn-primary">Find Your Host →</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <a href="index.html">🏠 Home</a>
+  <a href="best-web-hosting.html">🏆 Best Web Hosting 2026</a>
+  <a href="how-to-speed-up-wordpress.html">🚀 Speed Up WordPress</a>
+  <a href="#" onclick="showToast('Shared Hosting guide — coming soon!');closeMobile();return false">🌐 Shared Hosting Reviews</a>
+  <a href="#" onclick="showToast('WordPress Hosting guide — coming soon!');closeMobile();return false">🎯 WordPress Hosting</a>
+  <a href="#" onclick="showToast('VPS Hosting guide — coming soon!');closeMobile();return false">⚡ VPS Hosting</a>
+  <a href="#" onclick="showToast('Deals page — coming soon! 🔥');closeMobile();return false">🔥 Hosting Deals</a>
+  <a href="#" onclick="showToast('Compare tool — coming soon!');closeMobile();return false">📊 Compare Hosts</a>
+  <a href="#" onclick="showToast('About page — coming soon!');closeMobile();return false">About HostingJoy</a>
+  <a href="best-web-hosting.html" class="btn-primary" style="margin-top:16px;text-align:center;">Find Your Host →</a>
+</div>
+
+<!-- ════ HERO ════ -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-bg-orb orb-1"></div>
+    <div class="hero-bg-orb orb-2"></div>
+    <div class="hero-bg-orb orb-3"></div>
+  </div>
+  <div class="page-wrap" style="width:100%">
+    <div class="hero-inner">
+      <div>
+        <div class="trust-badge anim-1">
+          <span class="trust-badge-dot"></span>
+          <span class="trust-badge-text">90-Day Independent Testing · No Paid Placements · Updated April 2026</span>
+        </div>
+        <h1 class="hero-h1 anim-2">
+          Web Hosting Reviews<br>
+          <span class="underline">You Can Actually</span><br>
+          <span class="highlight">Trust.</span>
+        </h1>
+        <p class="hero-sub anim-3">We buy every hosting plan with our own money, run 90 days of live monitoring, and tell you exactly what we find — including the providers you should avoid. No affiliate rankings. No sponsor influence. Just data.</p>
+        <div class="hero-cta anim-4">
+          <a href="best-web-hosting.html" class="btn-hero-primary">See 2026 Rankings <span class="arrow-icon">→</span></a>
+          <a href="how-to-speed-up-wordpress.html" class="btn-hero-secondary">Speed Up WordPress ⚡</a>
+        </div>
+        <div class="proof-strip anim-5">
+          <div class="proof-item"><span class="proof-num">12</span><span class="proof-label">Hosts<br>Tested</span></div>
+          <div class="proof-div"></div>
+          <div class="proof-item"><span class="proof-num">90</span><span class="proof-label">Days of<br>Live Data</span></div>
+          <div class="proof-div"></div>
+          <div class="proof-item"><span class="proof-num">43K+</span><span class="proof-label">Uptime<br>Checks</span></div>
+          <div class="proof-div"></div>
+          <div class="proof-item"><span class="proof-num">$0</span><span class="proof-label">Paid<br>Placements</span></div>
+        </div>
+      </div>
+
+      <!-- Live panel -->
+      <div class="hero-panel anim-5">
+        <div class="panel-header">
+          <div class="panel-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+          <span class="panel-title">Live Rankings · Q2 2026</span>
+          <span class="panel-live">Live</span>
+        </div>
+        <div class="panel-body">
+          <div class="panel-row">
+            <div class="pr-host">
+              <div class="pr-icon" style="background:linear-gradient(135deg,#6c3fc5,#9b4de8)">H</div>
+              <div><div class="pr-name">Hostinger</div><div class="pr-tag">Best Overall</div></div>
+            </div>
+            <div class="pr-stats">
+              <div class="pr-stat"><div class="pr-stat-val val-green">99.98%</div><div class="pr-stat-label">Uptime</div></div>
+              <div class="pr-stat"><div class="pr-stat-val">241ms</div><div class="pr-stat-label">TTFB</div></div>
+              <span class="score-chip">9.4/10</span>
+            </div>
+          </div>
+          <div class="panel-row">
+            <div class="pr-host">
+              <div class="pr-icon" style="background:linear-gradient(135deg,#f97316,#ef4444)">SG</div>
+              <div><div class="pr-name">SiteGround</div><div class="pr-tag">Fastest Speed</div></div>
+            </div>
+            <div class="pr-stats">
+              <div class="pr-stat"><div class="pr-stat-val val-green">99.99%</div><div class="pr-stat-label">Uptime</div></div>
+              <div class="pr-stat"><div class="pr-stat-val" style="color:var(--teal)">32ms</div><div class="pr-stat-label">TTFB</div></div>
+              <span class="score-chip">9.2/10</span>
+            </div>
+          </div>
+          <div class="panel-row">
+            <div class="pr-host">
+              <div class="pr-icon" style="background:linear-gradient(135deg,#0ea5e9,#0284c7)">IS</div>
+              <div><div class="pr-name">InterServer</div><div class="pr-tag">Best Budget · Price-Lock</div></div>
+            </div>
+            <div class="pr-stats">
+              <div class="pr-stat"><div class="pr-stat-val val-green">99.96%</div><div class="pr-stat-label">Uptime</div></div>
+              <div class="pr-stat"><div class="pr-stat-val">310ms</div><div class="pr-stat-label">TTFB</div></div>
+              <span class="score-chip">8.8/10</span>
+            </div>
+          </div>
+          <div class="panel-row">
+            <div class="pr-host">
+              <div class="pr-icon" style="background:linear-gradient(135deg,#0073aa,#00a0d2)">WP</div>
+              <div><div class="pr-name">WP Engine</div><div class="pr-tag">Best Managed WP</div></div>
+            </div>
+            <div class="pr-stats">
+              <div class="pr-stat"><div class="pr-stat-val val-green">99.99%</div><div class="pr-stat-label">Uptime</div></div>
+              <div class="pr-stat"><div class="pr-stat-val">145ms</div><div class="pr-stat-label">TTFB</div></div>
+              <span class="score-chip">9.0/10</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TICKER ════ -->
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ticker-item">🏆 Hostinger <span class="tick-val">99.98% uptime</span> ·</span>
+    <span class="ticker-item">⚡ SiteGround <span class="tick-val">32ms TTFB</span> — fastest tested ·</span>
+    <span class="ticker-item">💰 InterServer <span class="tick-val">$2.50/mo forever</span> — price-lock guarantee ·</span>
+    <span class="ticker-item">🎯 WP Engine <span class="tick-val">99.99% uptime</span> — best managed WP ·</span>
+    <span class="ticker-item">🌿 GreenGeeks <span class="tick-val">300% renewable</span> energy matched ·</span>
+    <span class="ticker-item">⚓ HostArmada <span class="tick-val">9.0/10 support</span> — best live chat ·</span>
+    <span class="ticker-item">📊 Updated <span class="tick-val">April 2026</span> — Q1 data ·</span>
+    <span class="ticker-item">🏆 Hostinger <span class="tick-val">99.98% uptime</span> ·</span>
+    <span class="ticker-item">⚡ SiteGround <span class="tick-val">32ms TTFB</span> — fastest tested ·</span>
+    <span class="ticker-item">💰 InterServer <span class="tick-val">$2.50/mo forever</span> — price-lock guarantee ·</span>
+    <span class="ticker-item">🎯 WP Engine <span class="tick-val">99.99% uptime</span> — best managed WP ·</span>
+    <span class="ticker-item">🌿 GreenGeeks <span class="tick-val">300% renewable</span> energy matched ·</span>
+    <span class="ticker-item">⚓ HostArmada <span class="tick-val">9.0/10 support</span> — best live chat ·</span>
+    <span class="ticker-item">📊 Updated <span class="tick-val">April 2026</span> — Q1 data ·</span>
+  </div>
+</div>
+
+<!-- ════ STATS ════ -->
+<section class="stats-banner" aria-label="Key statistics">
+  <div class="page-wrap">
+    <div class="stats-row">
+      <div class="stat-block reveal"><div class="sb-num" data-target="12">0</div><div class="sb-label">Hosts Independently Tested</div><div class="sb-sub">All purchased with our own funds</div></div>
+      <div class="stat-block reveal reveal-2"><div class="sb-num" data-target="90">0</div><div class="sb-label">Days of Continuous Monitoring</div><div class="sb-sub">Per provider, per test cycle</div></div>
+      <div class="stat-block reveal reveal-3"><div class="sb-num" data-abbr="43K+" data-target="43000">0</div><div class="sb-label">Uptime Checks Conducted</div><div class="sb-sub">1-minute intervals via UptimeRobot</div></div>
+      <div class="stat-block reveal reveal-4"><div class="sb-num" data-target="120" data-suffix="+">0</div><div class="sb-label">Support Interactions Rated</div><div class="sb-sub">Response time, accuracy, resolution</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FEATURED POSTS ════ -->
+<section class="posts-section" aria-label="Featured articles">
+  <div class="page-wrap">
+    <div class="reveal">
+      <div class="section-label">Featured Articles</div>
+      <div class="section-title">Our Most-Read Guides</div>
+    </div>
+    <div class="posts-grid">
+      <!-- Main featured card → links to real article -->
+      <a href="best-web-hosting.html" class="post-featured reveal">
+        <div class="pf-visual">
+          <div class="pf-visual-bg"></div>
+          <div class="pf-visual-text">
+            <div class="pf-score">9.4</div>
+            <div class="pf-score-label">Hostinger · #1 Ranked · 2026</div>
+          </div>
+        </div>
+        <div class="pf-body">
+          <div class="pf-category">🏆 Web Hosting Reviews</div>
+          <h2 class="pf-title">Best Web Hosting 2026: 12 Providers Tested Over 90 Days (Real Data)</h2>
+          <p class="pf-excerpt">We paid for every plan, built identical WordPress test sites, and monitored 90 days of real uptime and speed data. Here's who actually delivers — and the providers you should avoid no matter how tempting their intro pricing looks.</p>
+          <div class="pf-meta">
+            <div class="pf-meta-left"><span>📅 April 20, 2026</span><span>⏱️ 18 min read</span><span>🔬 12 providers</span></div>
+            <span class="read-more">Read Guide →</span>
+          </div>
+        </div>
+      </a>
+
+      <div class="post-list">
+        <!-- Real article 2 -->
+        <a href="how-to-speed-up-wordpress.html" class="post-card-sm reveal reveal-2">
+          <div class="pcs-cat">🚀 WordPress Performance</div>
+          <div class="pcs-title">How to Speed Up Your WordPress Website (21 Real Fixes That Work in 2026)</div>
+          <div class="pcs-meta"><span>Apr 15, 2026</span><span>14 min read</span></div>
+          <span class="pcs-arrow">→</span>
+        </a>
+        <!-- Placeholder articles with coming-soon styling -->
+        <a href="#" onclick="showToast('WordPress Hosting guide — coming soon!');return false" class="post-card-sm reveal reveal-3">
+          <span class="cs-badge">Coming Soon</span>
+          <div class="pcs-cat">🎯 WordPress Hosting</div>
+          <div class="pcs-title">Best WordPress Hosting 2026: SiteGround vs Hostinger vs WP Engine Tested</div>
+          <div class="pcs-meta"><span>Coming soon</span><span>~12 min read</span></div>
+          <span class="pcs-arrow">→</span>
+        </a>
+        <a href="#" onclick="showToast('Cheap Hosting guide — coming soon!');return false" class="post-card-sm reveal reveal-4">
+          <span class="cs-badge">Coming Soon</span>
+          <div class="pcs-cat">💰 Budget Hosting</div>
+          <div class="pcs-title">Best Cheap Web Hosting 2026: The Honest Guide (No Renewal Traps)</div>
+          <div class="pcs-meta"><span>Coming soon</span><span>~10 min read</span></div>
+          <span class="pcs-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ COMPARISON TABLE ════ -->
+<section class="comparison-section" aria-label="Host comparison">
+  <div class="page-wrap">
+    <div class="comparison-heading">
+      <div class="section-eyebrow reveal">
+        <div class="section-label">Quick Comparison</div>
+        <h2 class="section-title">2026 Rankings at a Glance</h2>
+        <p class="section-sub">Sorted by overall score — all data from our Q1 2026 test period. Click any row to read the full review.</p>
+      </div>
+      <a href="best-web-hosting.html" class="view-all-link reveal">View Full Rankings →</a>
+    </div>
+    <div class="comp-table-wrap reveal">
+      <table class="comp-table">
+        <thead>
+          <tr><th>#</th><th>Provider</th><th>Uptime</th><th>Avg TTFB</th><th>Support</th><th>From</th><th>Score</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-featured">
+            <td style="color:var(--amber);font-weight:800">1</td>
+            <td><div class="host-name-cell"><div class="host-avatar" style="background:linear-gradient(135deg,#6c3fc5,#9b4de8)">H</div><div><div class="host-cell-name">Hostinger</div><div class="host-cell-tag">Best Overall 2026</div></div><span class="badge-featured">Top Pick</span></div></td>
+            <td class="td-g">99.98%</td><td class="td-g">241ms</td><td class="td-g">9.1/10</td><td>$2.49/mo</td>
+            <td><span class="score-pill sp-9">9.4/10</span></td>
+            <td class="comp-cta-cell"><a href="best-web-hosting.html">Review →</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-2);font-weight:700">2</td>
+            <td><div class="host-name-cell"><div class="host-avatar" style="background:linear-gradient(135deg,#f97316,#ef4444)">SG</div><div><div class="host-cell-name">SiteGround</div><div class="host-cell-tag">Fastest Speed</div></div></div></td>
+            <td class="td-g">99.99%</td><td class="td-g">32ms</td><td class="td-g">9.6/10</td><td>$3.99/mo</td>
+            <td><span class="score-pill sp-9">9.2/10</span></td>
+            <td class="comp-cta-cell"><a href="best-web-hosting.html#best-speed" onclick="showToast('Full SiteGround review in the hosting guide →')">Review →</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-2);font-weight:700">3</td>
+            <td><div class="host-name-cell"><div class="host-avatar" style="background:linear-gradient(135deg,#0ea5e9,#0284c7)">IS</div><div><div class="host-cell-name">InterServer</div><div class="host-cell-tag">Price-Lock Guarantee</div></div></div></td>
+            <td class="td-g">99.96%</td><td>310ms</td><td>8.2/10</td><td class="td-g">$2.50/mo</td>
+            <td><span class="score-pill sp-8">8.8/10</span></td>
+            <td class="comp-cta-cell"><a href="best-web-hosting.html#best-budget">Review →</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-2);font-weight:700">4</td>
+            <td><div class="host-name-cell"><div class="host-avatar" style="background:linear-gradient(135deg,#0073aa,#00a0d2)">WP</div><div><div class="host-cell-name">WP Engine</div><div class="host-cell-tag">Best Managed WordPress</div></div></div></td>
+            <td class="td-g">99.99%</td><td class="td-g">145ms</td><td class="td-g">9.3/10</td><td class="td-y">$20/mo</td>
+            <td><span class="score-pill sp-9">9.0/10</span></td>
+            <td class="comp-cta-cell"><a href="best-web-hosting.html#best-wordpress">Review →</a></td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-2);font-weight:700">5</td>
+            <td><div class="host-name-cell"><div class="host-avatar" style="background:linear-gradient(135deg,#2563eb,#0ea5e9)">CW</div><div><div class="host-cell-name">Cloudways</div><div class="host-cell-tag">Best VPS / Cloud</div></div></div></td>
+            <td class="td-g">99.97%</td><td>189ms</td><td>8.8/10</td><td>$14/mo</td>
+            <td><span class="score-pill sp-8">8.9/10</span></td>
+            <td class="comp-cta-cell"><a href="best-web-hosting.html#best-vps">Review →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="text-align:center;margin-top:24px" class="reveal">
+      <a href="best-web-hosting.html" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;padding:13px 28px">See All 12 Providers + Full Data →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TRUST ════ -->
+<section class="trust-section" aria-label="Why trust HostingJoy">
+  <div class="page-wrap">
+    <div style="text-align:center" class="reveal">
+      <div class="section-label">Why Trust Us</div>
+      <h2 class="section-title" style="margin:8px auto 12px;max-width:600px">How We Test — and Why It Matters</h2>
+      <p class="section-sub" style="max-width:560px;margin:0 auto">Every review site claims to test hosting. Most don't. Here's exactly what we do that makes our data different.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-cell reveal"><div class="tc-icon">💳</div><h3>We Pay For Everything</h3><p>No free accounts. No "media access." Every hosting plan in our reviews is purchased with HostingJoy's own money, just like you would. This means we get the same experience every customer gets.</p></div>
+      <div class="trust-cell reveal reveal-2"><div class="tc-icon">⏱️</div><h3>90 Days Minimum</h3><p>We monitor every host for a minimum of 90 consecutive days before publishing — not a 24-hour speed test. Performance changes week to week; our data captures the real long-term picture.</p></div>
+      <div class="trust-cell reveal reveal-3"><div class="tc-icon">🔢</div><h3>Real Numbers, Not Estimates</h3><p>43,000+ uptime checks. 120+ support interactions rated. TTFB measured from 5 global server locations. We publish the raw methodology so you can verify our claims or replicate our tests yourself.</p></div>
+      <div class="trust-cell reveal reveal-4"><div class="tc-icon">🚫</div><h3>Zero Paid Placements</h3><p>Rankings are determined exclusively by performance data. Providers we can't recommend are listed clearly — even when they pay high commissions. Bluehost and GoDaddy are on our "avoid" list for exactly this reason.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CATEGORIES ════ -->
+<section class="categories-section" aria-label="Browse by category">
+  <div class="page-wrap">
+    <div class="reveal">
+      <div class="section-label">Browse Topics</div>
+      <h2 class="section-title">Everything You Need to Launch</h2>
+    </div>
+    <div class="cats-grid">
+      <a href="best-web-hosting.html" class="cat-card cc-amber reveal">
+        <div class="cat-icon ci-amber">🏆</div>
+        <div class="cat-name">Best Web Hosting</div>
+        <div class="cat-desc">The definitive 2026 rankings based on 90 days of real uptime, speed, and support data across 12 providers.</div>
+        <div class="cat-count">✅ Live · Updated April 2026</div>
+      </a>
+      <a href="how-to-speed-up-wordpress.html" class="cat-card cc-teal reveal reveal-2">
+        <div class="cat-icon ci-teal">🚀</div>
+        <div class="cat-name">WordPress Speed</div>
+        <div class="cat-desc">Took a real WordPress site from PageSpeed 34 to 96 in one afternoon. 21 step-by-step fixes with interactive checklist.</div>
+        <div class="cat-count">✅ Live · 14 min read</div>
+      </a>
+      <a href="#" onclick="showToast('WordPress Hosting guide — coming soon!');return false" class="cat-card cc-blue reveal reveal-3">
+        <div class="cat-icon ci-blue">🎯</div>
+        <div class="cat-name">WordPress Hosting</div>
+        <div class="cat-desc">LiteSpeed servers, staging environments, and zero-config performance optimization. Coming soon.</div>
+        <div class="cat-count">🚧 Coming soon</div>
+      </a>
+      <a href="#" onclick="showToast('VPS Hosting guide — coming soon!');return false" class="cat-card cc-blue reveal">
+        <div class="cat-icon ci-blue">⚡</div>
+        <div class="cat-name">VPS Hosting</div>
+        <div class="cat-desc">Cloudways vs DigitalOcean vs Linode. Developer-grade cloud hosting tested and compared without jargon.</div>
+        <div class="cat-count">🚧 Coming soon</div>
+      </a>
+      <a href="#" onclick="showToast('Cheap Hosting guide — coming soon!');return false" class="cat-card cc-amber reveal reveal-2">
+        <div class="cat-icon ci-amber">💰</div>
+        <div class="cat-name">Cheap Hosting</div>
+        <div class="cat-desc">Budget hosting that's actually good — and the renewal pricing traps that make "cheap" hosts more expensive long-term.</div>
+        <div class="cat-count">🚧 Coming soon</div>
+      </a>
+      <a href="#" onclick="showToast('Deals page — coming soon! 🔥');return false" class="cat-card cc-teal reveal reveal-3">
+        <div class="cat-icon ci-orange">🔥</div>
+        <div class="cat-name">Hosting Deals</div>
+        <div class="cat-desc">Live coupon codes, Black Friday deals, and verified discount links — updated in real time as offers change.</div>
+        <div class="cat-count">🚧 Coming soon · Sign up for alerts</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TESTIMONIALS ════ -->
+<section class="testimonials-section" aria-label="Reader testimonials">
+  <div class="page-wrap">
+    <div style="text-align:center" class="reveal">
+      <div class="section-label">Reader Reviews</div>
+      <h2 class="section-title" style="margin:8px auto">What Our Readers Say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I've been burned by 'best hosting' lists before. HostingJoy is different — they actually called out Bluehost for poor performance instead of ranking it #1 because it pays the highest commission. Switched to Hostinger based on their data and my site loads in 0.9s now."</p>
+        <div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#6c3fc5,#3b82f6)">SR</div><div><div class="testi-name">Suresh R.</div><div class="testi-role">WordPress Blogger · Mumbai</div></div></div>
+      </div>
+      <div class="testi-card reveal reveal-2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The WordPress speed guide took me from a 38 PageSpeed score to 91 in two hours. I followed the checklist step by step, no technical knowledge required. My bounce rate dropped by 40% within a week."</p>
+        <div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#f97316,#e05c1a)">MK</div><div><div class="testi-name">Maria K.</div><div class="testi-role">E-commerce Owner · London</div></div></div>
+      </div>
+      <div class="testi-card reveal reveal-3">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"As a developer managing 20+ client sites, I need accurate data — not affiliate-driven rankings. HostingJoy is the only site I trust for hosting recommendations. I've referred all my clients here."</p>
+        <div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#0ea5e9,#06d6a0)">AC</div><div><div class="testi-name">Alex C.</div><div class="testi-role">Web Developer · Toronto</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ABOUT ════ -->
+<section class="about-strip" aria-label="About HostingJoy">
+  <div class="page-wrap">
+    <div class="about-inner">
+      <div class="about-text reveal">
+        <div class="section-label">About HostingJoy</div>
+        <h2 class="section-title" style="margin-top:8px">Built by People Who Got Burned by Bad Hosting Advice</h2>
+        <p>HostingJoy was started after one too many experiences with affiliate-driven "best hosting" lists that ranked providers based on commission size rather than actual performance. We decided to do it differently.</p>
+        <p>Every provider we review is paid for with our own funds. Every ranking is based on 90 days of live monitoring data — uptime, TTFB, support quality, and pricing transparency. If a host performs poorly, we say so — even if they pay the highest commissions.</p>
+        <a href="#" onclick="showToast('About page — coming soon!');return false" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px">Meet the Team →</a>
+      </div>
+      <div class="about-metrics reveal reveal-2">
+        <div class="am-box"><div class="am-val">100%</div><div class="am-label">Of hosting plans purchased with our own funds — no freebies</div></div>
+        <div class="am-box"><div class="am-val">$0</div><div class="am-label">Paid for placement in our rankings — ever</div></div>
+        <div class="am-box"><div class="am-val">6</div><div class="am-label">Hosts removed from recommendations despite high commissions</div></div>
+        <div class="am-box"><div class="am-val">2020</div><div class="am-label">Year we started — 6+ years of continuous test data</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ NEWSLETTER ════ -->
+<section class="newsletter-section" id="newsletter" aria-label="Newsletter signup">
+  <div class="page-wrap">
+    <div class="newsletter-card reveal">
+      <div class="nl-badge">📬 Free Newsletter · No Spam</div>
+      <h2 class="nl-h2">Get Honest Hosting Intel<br>Straight to Your Inbox</h2>
+      <p class="nl-sub">New hosting test results, speed optimization tips, and deal alerts — once a month. No filler, no sponsored content. Unsubscribe any time.</p>
+      <div class="nl-form">
+        <input type="email" class="nl-input" id="nlEmail" placeholder="your@email.com" aria-label="Email address">
+        <button type="button" class="nl-submit" id="nlBtn">Subscribe →</button>
+      </div>
+      <p class="nl-privacy">🔒 No spam. No data selling. Unsubscribe any time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer class="footer" role="contentinfo">
+  <div class="page-wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo" aria-label="HostingJoy">
+          <div class="footer-logo-icon">HJ</div>
+          <span class="footer-logo-text">Hosting<em>Joy</em></span>
+        </a>
+        <p class="footer-tagline">Independent web hosting reviews built on 90 days of real test data. No paid placements. Just honest data.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Twitter/X" onclick="showToast('Follow us on X — coming soon!');return false">𝕏</a>
+          <a href="#" class="social-btn" aria-label="YouTube" onclick="showToast('YouTube channel — coming soon!');return false">▶</a>
+          <a href="#" class="social-btn" aria-label="LinkedIn" onclick="showToast('LinkedIn — coming soon!');return false">in</a>
+          <a href="#newsletter" class="social-btn" aria-label="Newsletter">✉</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Reviews</h4>
+        <ul>
+          <li><a href="best-web-hosting.html">Best Web Hosting 2026</a></li>
+          <li><a href="#" onclick="showToast('WordPress Hosting — coming soon!');return false">WordPress Hosting <span class="cs-tag">Soon</span></a></li>
+          <li><a href="#" onclick="showToast('VPS Hosting guide — coming soon!');return false">VPS Hosting <span class="cs-tag">Soon</span></a></li>
+          <li><a href="#" onclick="showToast('Managed Hosting guide — coming soon!');return false">Managed Hosting <span class="cs-tag">Soon</span></a></li>
+          <li><a href="#" onclick="showToast('Cheap Hosting guide — coming soon!');return false">Cheap Hosting <span class="cs-tag">Soon</span></a></li>
+          <li><a href="#" onclick="showToast('E-Commerce Hosting guide — coming soon!');return false">E-Commerce Hosting <span class="cs-tag">Soon</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Guides &amp; Tools</h4>
+        <ul>
+          <li><a href="how-to-speed-up-wordpress.html">Speed Up WordPress</a></li>
+          <li><a href="#" onclick="showToast('Start a Blog guide — coming soon!');return false">Start a Blog <span class="cs-tag">Soon</span></a></li>
+          <li><a href="#" onclick="showToast('Website Migration guide — coming soon!');return false">Migrate Your Site <span class="cs-tag">Soon</span></a></li>
+          <li><a href="#" onclick="showToast('Compare tool — coming soon!');return false">Compare Hosts <span class="cs-tag">Soon</span></a></li>
+          <li><a href="#" onclick="showToast('Deals page — coming soon!');return false">Hosting Deals 🔥 <span class="cs-tag">Soon</span></a></li>
+          <li><a href="#" onclick="showToast('Hosting Glossary — coming soon!');return false">Hosting Glossary <span class="cs-tag">Soon</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#" onclick="showToast('About page — coming soon!');return false">About Us <span class="cs-tag">Soon</span></a></li>
+          <li><a href="best-web-hosting.html#methodology">Our Methodology</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+          <li><a href="#" onclick="showToast('Contact page — coming soon!');return false">Contact <span class="cs-tag">Soon</span></a></li>
+          <li><a href="#" onclick="showToast('Sitemap — coming soon!');return false">Sitemap <span class="cs-tag">Soon</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">© 2026 HostingJoy.com · All rights reserved</div>
+      <div class="footer-bottom-right">
+        <a href="#" onclick="showToast('Privacy Policy — coming soon!');return false">Privacy Policy</a>
+        <a href="#" onclick="showToast('Terms of Use — coming soon!');return false">Terms of Use</a>
+        <a href="#" onclick="showToast('Affiliate Disclosure — coming soon!');return false">Affiliate Disclosure</a>
+        <a href="#" onclick="showToast('Cookie Policy — coming soon!');return false">Cookies</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-disclaimer">
+    <div class="page-wrap">
+      HostingJoy.com is reader-supported. When you purchase through links on our site, we may earn an affiliate commission at no extra cost to you. This does not influence our rankings or recommendations — providers are ranked exclusively on performance data from our independent testing. All pricing data reflects introductory rates as of April 2026 and is subject to change.
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+
+<script>
+/* ── Toast system ── */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  const m = document.getElementById('toast-msg');
+  clearTimeout(toastTimer);
+  m.textContent = msg || 'This page is coming soon!';
+  t.classList.remove('show');
+  void t.offsetWidth; // reflow to restart animation
+  t.classList.add('show');
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+/* ── Navbar scroll ── */
+const navbar = document.getElementById('navbar');
+const scrollBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+  scrollBtn.classList.toggle('visible', window.scrollY > 400);
+}, {passive:true});
+scrollBtn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ── Mobile menu ── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+function closeMobile() {
+  mobileMenu.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', false);
+  document.body.style.overflow = '';
+}
+
+/* ── Reveal on scroll ── */
+const revealEls = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target)} });
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+revealEls.forEach(el => ro.observe(el));
+
+/* ── Animated counters ── */
+function animateCounter(el) {
+  if(el.dataset.abbr){el.textContent=el.dataset.abbr;return}
+  const target=parseInt(el.dataset.target), suffix=el.dataset.suffix||'';
+  const dur=1800, start=performance.now();
+  const step=now=>{
+    const t=Math.min((now-start)/dur,1), val=Math.floor((1-Math.pow(1-t,3))*target);
+    el.textContent=val.toLocaleString()+(t<1?'':suffix);
+    if(t<1)requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const co = new IntersectionObserver(entries => {
+  entries.forEach(e=>{if(e.isIntersecting){animateCounter(e.target);co.unobserve(e.target)}});
+},{threshold:.5});
+document.querySelectorAll('.sb-num[data-target]').forEach(c=>co.observe(c));
+
+/* ── Newsletter ── */
+document.getElementById('nlBtn').addEventListener('click', function(){
+  const input=document.getElementById('nlEmail');
+  if(input.value&&input.value.includes('@')){
+    this.textContent='✓ Subscribed!';
+    this.style.background='var(--teal)';
+    input.value='';
+    setTimeout(()=>{this.textContent='Subscribe →';this.style.background=''},3000);
+  } else {
+    input.style.borderColor='var(--red)';
+    input.focus();
+    setTimeout(()=>input.style.borderColor='',2000);
+  }
+});
+</script>
+</body>
+</html>
