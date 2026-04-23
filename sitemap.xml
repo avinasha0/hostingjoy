@@ -7,7 +7,7 @@
   <!-- ═══════════════════════════════════════════════
        HostingJoy.com — XML Sitemap
        Generated: April 2026
-       Total URLs: 22
+       Total URLs: 23
        Submit to: Google Search Console → Sitemaps
                   Bing Webmaster Tools → Sitemaps
        ═════════════════════════════════════════════ -->
@@ -15,7 +15,7 @@
   <!-- ── HOMEPAGE ── -->
   <url>
     <loc>https://hostingjoy.com/</loc>
-    <lastmod>2026-04-22</lastmod>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -51,6 +51,13 @@
   </url>
 
   <!-- ── HOSTING REVIEW PAGES ── -->
+  <url>
+    <loc>https://hostingjoy.com/kinsta-review/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <url>
     <loc>https://hostingjoy.com/shared-hosting/</loc>
     <lastmod>2026-04-22</lastmod>
