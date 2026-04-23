@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="shortcut icon" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <title>Kinsta Review 2026: Is $35/Month Worth It? (Honest Verdict) | HostingJoy</title>
 <meta name="description" content="Kinsta review 2026: All plans compared, real performance data, honest pros and cons. Is Kinsta worth $35/month? We break down exactly who should — and shouldn't — pay the premium.">
 <meta name="robots" content="index, follow">
@@ -55,6 +58,7 @@ a:hover{color:var(--amber-light)}
 .nav-links{display:flex;align-items:center;gap:4px;list-style:none}
 .nav-links a{display:block;padding:8px 14px;font-size:.85rem;font-weight:600;color:var(--text-2);text-decoration:none;border-radius:var(--radius-sm);transition:color .2s,background .2s}
 .nav-links a:hover{color:var(--text);background:var(--surface)}
+.nav-links .nav-active a{color:var(--amber)}
 .nav-dropdown{position:relative}
 .nav-dropdown>a::after{content:' ▾';font-size:.65rem;opacity:.6}
 .dropdown-menu{position:absolute;top:calc(100% + 8px);left:0;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:8px;min-width:220px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .2s ease}
@@ -68,7 +72,7 @@ a:hover{color:var(--amber-light)}
 .btn-primary{padding:9px 20px;border-radius:var(--radius-sm);background:var(--amber);color:#000;font-size:.83rem;font-weight:800;border:none;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-block;box-shadow:0 4px 12px rgba(245,158,11,.3)}
 .btn-primary:hover{background:var(--amber-light);box-shadow:0 4px 20px rgba(245,158,11,.45);transform:translateY(-1px);color:#000}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
-.hamburger span{display:block;width:22px;height:2px;background:var(--text-2);border-radius:2px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text-2);border-radius:2px;transition:all .25s}
 @media(max-width:900px){.nav-links,.nav-right .btn-ghost{display:none}.hamburger{display:flex}}
 .mobile-menu{position:fixed;top:70px;left:0;right:0;bottom:0;z-index:999;background:rgba(8,12,24,.98);backdrop-filter:blur(20px);padding:24px;display:none;flex-direction:column;gap:8px;overflow-y:auto}
 .mobile-menu.open{display:flex}
@@ -318,16 +322,17 @@ li{margin-bottom:7px;line-height:1.7}
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar" id="navbar">
+<!-- ════ NAVBAR ════ -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
+    <a href="index.html" class="nav-logo" aria-label="HostingJoy Home">
       <div class="nav-logo-icon">HJ</div>
       <span class="nav-logo-text">Hosting<em>Joy</em></span>
     </a>
-    <ul class="nav-links">
+
+    <ul class="nav-links" role="list">
       <li><a href="index.html">Home</a></li>
-      <li class="nav-dropdown">
+      <li class="nav-dropdown nav-active">
         <a href="best-web-hosting.html">Reviews</a>
         <div class="dropdown-menu">
           <a href="best-web-hosting.html"><span>🏆</span> Best Web Hosting 2026</a>
@@ -352,7 +357,7 @@ li{margin-bottom:7px;line-height:1.7}
       <li><a href="about.html">About</a></li>
     </ul>
     <div class="nav-right">
-      <a href="index.html#newsletter" class="btn-ghost">Newsletter</a>
+      <a href="#newsletter" class="btn-ghost">Newsletter</a>
       <a href="best-web-hosting.html" class="btn-primary">Find Your Host →</a>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -362,14 +367,16 @@ li{margin-bottom:7px;line-height:1.7}
 </nav>
 
 <!-- Mobile menu -->
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
   <a href="index.html">🏠 Home</a>
   <a href="best-web-hosting.html">🏆 Best Web Hosting 2026</a>
-  <a href="managed-hosting.html">☁️ Managed Hosting</a>
-  <a href="wordpress-hosting.html">🎯 WordPress Hosting</a>
   <a href="how-to-speed-up-wordpress.html">🚀 Speed Up WordPress</a>
+  <a href="shared-hosting.html">🌐 Shared Hosting Reviews</a>
+  <a href="wordpress-hosting.html">🎯 WordPress Hosting</a>
+  <a href="vps-hosting.html">⚡ VPS Hosting</a>
   <a href="deals.html">🔥 Hosting Deals</a>
   <a href="compare.html">📊 Compare Hosts</a>
+  <a href="about.html">About HostingJoy</a>
   <a href="best-web-hosting.html" class="btn-primary" style="margin-top:16px;text-align:center;">Find Your Host →</a>
 </div>
 
@@ -837,6 +844,9 @@ li{margin-bottom:7px;line-height:1.7}
 </div><!-- end article-layout -->
 </div><!-- end article-wrap -->
 
+<!-- Newsletter anchor (to match site header links) -->
+<div id="newsletter"></div>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="page-wrap">
@@ -851,7 +861,7 @@ li{margin-bottom:7px;line-height:1.7}
           <a href="#" class="social-btn">𝕏</a>
           <a href="#" class="social-btn">▶</a>
           <a href="#" class="social-btn">in</a>
-          <a href="index.html#newsletter" class="social-btn">✉</a>
+          <a href="#newsletter" class="social-btn">✉</a>
         </div>
       </div>
       <div class="footer-col">
@@ -881,7 +891,7 @@ li{margin-bottom:7px;line-height:1.7}
         <ul>
           <li><a href="about.html">About Us</a></li>
           <li><a href="best-web-hosting.html#methodology">Our Methodology</a></li>
-          <li><a href="index.html#newsletter">Newsletter</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="affiliate-disclosure.html">Affiliate Disclosure</a></li>
           <li><a href="privacy.html">Privacy Policy</a></li>
